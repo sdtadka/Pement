@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Pementcollect</title>
+    <title>Sadik Bharat • SURAKSHA ARMOR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode"></script>
@@ -31,7 +31,6 @@
             position: relative;
         }
 
-        /* ----- FULLY RESPONSIVE WALLET ----- */
         .wallet-case { 
             position: relative; 
             width: 100%; 
@@ -82,7 +81,6 @@
             z-index: 40; 
         }
 
-        /* QR Container */
         .snake-glow { 
             position: relative; 
             padding: 8px; 
@@ -122,7 +120,6 @@
             object-fit: cover;
         }
 
-        /* Scanner Modal */
         .scan-box { 
             position: relative; 
             width: 100%; 
@@ -151,7 +148,6 @@
             object-fit: cover !important; 
         }
 
-        /* Bottom Nav - 4 BUTTONS */
         .bottom-nav { 
             margin-top: 24px; 
             display: flex; 
@@ -198,7 +194,6 @@
             white-space: nowrap;
         }
 
-        /* Modal Responsive */
         .modal { 
             position: fixed; 
             inset: 0; 
@@ -384,17 +379,14 @@
 
             <div class="mt-4 sm:mt-6 flex flex-col items-center">
                 <div class="flex items-center space-x-3 mb-3">
-                    <svg width="50" height="20" viewBox="0 0 80 30" fill="none">
-                        <rect x="2" y="5" width="30" height="20" rx="4" fill="#2563eb" />
-                        <text x="8" y="21" fill="white" font-size="12" font-weight="bold">UPI</text>
-                        <rect x="45" y="5" width="30" height="20" rx="4" fill="#0f172a" />
-                        <text x="52" y="21" fill="white" font-size="10" font-weight="bold">BHARAT</text>
-                    </svg>
+                    <!-- UPI -->
+                    <span class="text-xs font-black text-blue-600">UPI</span>
                     <div class="w-px h-4 bg-slate-200"></div>
-                    <svg width="50" height="20" viewBox="0 0 80 30" fill="none">
-                        <rect x="2" y="5" width="30" height="20" rx="4" fill="#16a34a" />
-                        <text x="8" y="21" fill="white" font-size="10" font-weight="bold">QR</text>
-                    </svg>
+                    <!-- BHARAT text -->
+                    <span class="text-xs font-black text-slate-800">BHARAT</span>
+                    <div class="w-px h-4 bg-slate-200"></div>
+                    <!-- QR -->
+                    <span class="text-xs font-black text-green-600">QR</span>
                 </div>
                 <p class="text-[8px] sm:text-[9px] text-slate-400 font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em]">SECURE • NPCI CERTIFIED • DIGITAL INDIA</p>
             </div>
@@ -403,10 +395,7 @@
         <!-- ID CARD (BACK) -->
         <div class="id-card">
             <div class="w-full flex justify-between items-center mb-4 sm:mb-6">
-                <svg width="40" height="16" viewBox="0 0 60 20" fill="none">
-                    <rect x="2" y="2" width="30" height="16" rx="3" fill="#2563eb" />
-                    <text x="8" y="15" fill="white" font-size="10" font-weight="bold">UPI</text>
-                </svg>
+                <span class="text-xs font-black text-blue-600">UPI</span>
                 <span class="bg-blue-600 text-white text-[7px] sm:text-[8px] font-black px-2 sm:px-3 py-1 rounded-md uppercase tracking-widest">OFFICIAL ID</span>
             </div>
 
@@ -443,7 +432,7 @@
             <span class="nav-label">📷 CAMERA</span>
         </div>
 
-        <!-- DOWNLOAD QR - PROFESSIONAL WITH LOGO & DETAILS -->
+        <!-- DOWNLOAD QR - EXACT SCREENSHOT LAYOUT -->
         <div class="nav-item" onclick="downloadProfessionalQR()">
             <div class="nav-btn">
                 <svg class="w-6 h-6 sm:w-7 sm:h-7 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -453,7 +442,7 @@
             <span class="nav-label">⬇️ DOWNLOAD</span>
         </div>
 
-        <!-- SHARE QR - PROFESSIONAL WITH LOGO & DETAILS -->
+        <!-- SHARE QR - EXACT SCREENSHOT LAYOUT -->
         <div class="nav-item" onclick="shareProfessionalQR()">
             <div class="nav-btn">
                 <svg class="w-6 h-6 sm:w-7 sm:h-7 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -466,7 +455,6 @@
         <!-- SETTINGS -->
         <div class="nav-item" onclick="openSettings()">
             <div class="nav-btn">
-                <!-- iOS STYLE SETTINGS ICON -->
                 <svg class="w-6 h-6 sm:w-7 sm:h-7 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3.5L12 5.5M12 3.5C10.8 3.5 9.65 3.85 8.68 4.5L7.5 3.3M8.68 4.5C7.45 5.25 6.5 6.35 5.9 7.65L4.4 7.2M5.9 7.65C5.35 8.8 5.05 10.1 5.05 11.45L3.2 11.6M5.05 11.45C5.05 12.8 5.4 14.1 6 15.25L4.55 16M6 15.25C6.6 16.5 7.5 17.6 8.68 18.35L7.6 19.65M8.68 18.35C9.6 18.95 10.7 19.3 11.85 19.35L12 21.2M11.85 19.35C13 19.3 14.15 18.95 15.12 18.3L16.25 19.55M15.12 18.3C16.3 17.55 17.25 16.45 17.9 15.2L19.4 15.65M17.9 15.2C18.5 14 18.85 12.65 18.9 11.3L20.75 11.15M18.9 11.3C18.85 9.95 18.5 8.65 17.85 7.5L19.3 6.75M17.85 7.5C17.25 6.3 16.35 5.25 15.22 4.5L16.25 3.2M15.22 4.5C14.25 3.9 13.15 3.55 12 3.5L12 5.5" stroke="currentColor" stroke-width="1.8" fill="none"/>
                     <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.8" fill="none"/>
@@ -575,43 +563,50 @@
             qrcode.makeCode(`upi://pay?pa=${upi}&pn=${encodeURIComponent(name)}&am=${a}&tn=${encodeURIComponent(autoMsg)}&cu=INR`);
         }
 
-        // ========== PROFESSIONAL QR GENERATOR WITH LOGO & DETAILS ==========
+        // ========== PROFESSIONAL QR - EXACT SCREENSHOT LAYOUT ==========
         async function generateProfessionalQRCanvas() {
-            const amount = document.getElementById('amtInput').value || 0;
+            const amount = document.getElementById('amtInput').value || 20;
             const canvas = document.createElement('canvas');
             canvas.width = 800;
             canvas.height = 1000;
             const ctx = canvas.getContext('2d');
 
-            // White background
+            // Pure white background
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Add border effect
-            ctx.strokeStyle = '#3b82f6';
-            ctx.lineWidth = 12;
-            ctx.strokeRect(6, 6, canvas.width - 12, canvas.height - 12);
-
-            // Title
+            // ===== TOP SECTION =====
             ctx.fillStyle = '#1e293b';
-            ctx.font = 'bold 36px Inter, Arial, sans-serif';
+            ctx.font = 'bold 32px Inter, Arial, sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText('BHARAT INTERFACE FOR MONEY', canvas.width/2, 80);
 
+            // ===== AMOUNT =====
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = 'bold 36px Inter, Arial, sans-serif';
+            ctx.fillText('₹', canvas.width/2 - 60, 160);
+            
+            ctx.fillStyle = '#0f172a';
+            ctx.font = 'bold 64px Inter, Arial, sans-serif';
+            ctx.fillText(amount, canvas.width/2 + 20, 170);
+
+            // ===== QR CODE with LOGO =====
             // Generate QR code on temporary canvas
             const tempCanvas = document.createElement('canvas');
             const tempQr = new QRCode(tempCanvas, {
                 text: `upi://pay?pa=${upi}&pn=${encodeURIComponent(name)}&am=${amount}&tn=${encodeURIComponent(autoMsg)}&cu=INR`,
-                width: 400,
-                height: 400,
+                width: 350,
+                height: 350,
                 colorDark: "#000000",
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
             });
             
+            // Wait for QR to render
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
             // Draw QR code
-            await new Promise(resolve => setTimeout(resolve, 100)); // Wait for QR to render
-            ctx.drawImage(tempCanvas, 200, 120, 400, 400);
+            ctx.drawImage(tempCanvas, 225, 220, 350, 350);
 
             // Draw logo in center
             const logoImg = new Image();
@@ -627,68 +622,69 @@
                 // Create circular clip for logo
                 ctx.save();
                 ctx.beginPath();
-                ctx.arc(400, 320, 60, 0, Math.PI * 2);
+                ctx.arc(400, 395, 45, 0, Math.PI * 2);
                 ctx.closePath();
                 ctx.clip();
-                ctx.drawImage(logoImg, 340, 260, 120, 120);
+                ctx.drawImage(logoImg, 355, 350, 90, 90);
                 ctx.restore();
                 
-                // Border around logo
+                // White border around logo
                 ctx.strokeStyle = '#ffffff';
-                ctx.lineWidth = 8;
+                ctx.lineWidth = 6;
                 ctx.beginPath();
-                ctx.arc(400, 320, 60, 0, Math.PI * 2);
+                ctx.arc(400, 395, 45, 0, Math.PI * 2);
                 ctx.stroke();
                 
+                // Blue border
                 ctx.strokeStyle = '#3b82f6';
-                ctx.lineWidth = 4;
+                ctx.lineWidth = 3;
                 ctx.beginPath();
-                ctx.arc(400, 320, 60, 0, Math.PI * 2);
+                ctx.arc(400, 395, 45, 0, Math.PI * 2);
                 ctx.stroke();
             } catch (e) {
-                console.log('Logo load failed, continuing without logo');
+                console.log('Logo load failed');
             }
 
-            // Professional details section
-            ctx.fillStyle = '#f8fafc';
-            ctx.fillRect(100, 600, 600, 280);
+            // ===== BOTTOM SECTION - EXACT SCREENSHOT LAYOUT =====
+            const startY = 650;
             
-            ctx.strokeStyle = '#3b82f6';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(100, 600, 600, 280);
-
-            // Payment details
-            ctx.fillStyle = '#0f172a';
-            ctx.font = 'bold 32px Inter, Arial, sans-serif';
-            ctx.textAlign = 'left';
-            ctx.fillText('₹' + amount, 140, 680);
-
-            ctx.fillStyle = '#334155';
+            // UPI • BHARAT • QR line
             ctx.font = 'bold 28px Inter, Arial, sans-serif';
-            ctx.fillText('UPI ID:', 140, 760);
+            
             ctx.fillStyle = '#2563eb';
+            ctx.fillText('UPI', 280, startY);
+            
+            ctx.fillStyle = '#cbd5e1';
             ctx.font = '28px Inter, Arial, sans-serif';
-            ctx.fillText(upi, 300, 760);
-
-            ctx.fillStyle = '#334155';
+            ctx.fillText('•', 390, startY);
+            
+            ctx.fillStyle = '#1e293b';
             ctx.font = 'bold 28px Inter, Arial, sans-serif';
-            ctx.fillText('Name:', 140, 820);
-            ctx.fillStyle = '#0f172a';
+            ctx.fillText('BHARAT', 420, startY);
+            
+            ctx.fillStyle = '#cbd5e1';
             ctx.font = '28px Inter, Arial, sans-serif';
-            ctx.fillText(name, 300, 820);
+            ctx.fillText('•', 560, startY);
+            
+            ctx.fillStyle = '#16a34a';
+            ctx.font = 'bold 28px Inter, Arial, sans-serif';
+            ctx.fillText('QR', 600, startY);
 
-            ctx.fillStyle = '#334155';
-            ctx.font = 'bold 24px Inter, Arial, sans-serif';
-            ctx.fillText('Message:', 140, 880);
-            ctx.fillStyle = '#64748b';
-            ctx.font = '24px Inter, Arial, sans-serif';
-            ctx.fillText('"' + autoMsg + '"', 300, 880);
-
-            // Footer
+            // ===== SECURE LINE =====
             ctx.fillStyle = '#94a3b8';
-            ctx.font = '20px Inter, Arial, sans-serif';
+            ctx.font = 'bold 20px Inter, Arial, sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText('SECURE • NPCI CERTIFIED • DIGITAL INDIA', canvas.width/2, 950);
+            ctx.fillText('SECURE • NPCI CERTIFIED • DIGITAL INDIA', canvas.width/2, startY + 80);
+
+            // ===== UPI ID AND NAME (subtle, professional) =====
+            ctx.fillStyle = '#475569';
+            ctx.font = '22px Inter, Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(upi, canvas.width/2, startY + 150);
+            
+            ctx.fillStyle = '#1e293b';
+            ctx.font = 'bold 24px Inter, Arial, sans-serif';
+            ctx.fillText(name, canvas.width/2, startY + 200);
 
             return canvas;
         }
@@ -714,13 +710,13 @@
                 
                 canvas.toBlob(async function(blob) {
                     const file = new File([blob], 'sadik-bharat-qr.png', { type: 'image/png' });
-                    const amount = document.getElementById('amtInput').value || 0;
+                    const amount = document.getElementById('amtInput').value || 20;
                     
                     if (navigator.share) {
                         try {
                             await navigator.share({
-                                title: 'Sadik Bharat UPI QR',
-                                text: `Pay ₹${amount} to ${name} (${upi})`,
+                                title: 'Bharat Interface for Money',
+                                text: `Pay ₹${amount} to ${name}`,
                                 files: [file]
                             });
                         } catch (error) {
@@ -794,7 +790,6 @@
             logoUrl = document.getElementById('inImg').value; 
             autoMsg = document.getElementById('inMsg').value;
             
-            // Update UI
             document.getElementById('idUpi').innerText = upi; 
             document.getElementById('idName').innerText = name; 
             document.getElementById('msgDisplay').innerText = `"${autoMsg}"`;
