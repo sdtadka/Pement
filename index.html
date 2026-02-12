@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Pement Collect</title>
+    <title>Pementcollect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode"></script>
@@ -103,21 +103,23 @@
             top: 50%; 
             left: 50%; 
             transform: translate(-50%, -50%); 
-            width: 48px; 
-            height: 48px; 
+            width: 52px; 
+            height: 52px; 
             background: white; 
             border-radius: 50%; 
-            padding: 3px; 
+            padding: 4px; 
             z-index: 10; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); 
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 2px solid white;
         }
-        .qr-logo svg { 
+        .qr-logo img { 
             width: 100%; 
             height: 100%; 
             border-radius: 50%; 
+            object-fit: cover;
         }
 
         /* Scanner Modal */
@@ -149,15 +151,15 @@
             object-fit: cover !important; 
         }
 
-        /* Bottom Nav - 3 BUTTONS NOW */
+        /* Bottom Nav - 4 BUTTONS */
         .bottom-nav { 
             margin-top: 24px; 
             display: flex; 
-            gap: 20px; 
+            gap: 16px; 
             align-items: center; 
             justify-content: center;
             width: 100%;
-            max-width: 380px;
+            max-width: 400px;
             flex-wrap: wrap;
         }
         .nav-item { 
@@ -260,15 +262,6 @@
             position: relative;
             text-shadow: 0.05em 0 0 rgba(255,0,0,0.7), -0.05em -0.025em 0 rgba(0,255,0,0.5), 0.025em 0.05em 0 rgba(0,0,255,0.5);
             animation: glitch 725ms infinite;
-        }
-        @keyframes glitch {
-            0% { text-shadow: 0.05em 0 0 rgba(255,0,0,0.7), -0.05em -0.025em 0 rgba(0,255,0,0.5), 0.025em 0.05em 0 rgba(0,0,255,0.5); }
-            14% { text-shadow: 0.05em 0 0 rgba(255,0,0,0.7), -0.05em -0.025em 0 rgba(0,255,0,0.5), 0.025em 0.05em 0 rgba(0,0,255,0.5); }
-            15% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,0.7), 0.025em 0.025em 0 rgba(0,255,0,0.5), -0.05em -0.05em 0 rgba(0,0,255,0.5); }
-            49% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,0.7), 0.025em 0.025em 0 rgba(0,255,0,0.5), -0.05em -0.05em 0 rgba(0,0,255,0.5); }
-            50% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,0.7), 0.05em 0 0 rgba(0,255,0,0.5), 0 -0.05em 0 rgba(0,0,255,0.5); }
-            99% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,0.7), 0.05em 0 0 rgba(0,255,0,0.5), 0 -0.05em 0 rgba(0,0,255,0.5); }
-            100% { text-shadow: 0.05em 0 0 rgba(255,0,0,0.7), -0.05em -0.025em 0 rgba(0,255,0,0.5), 0.025em 0.05em 0 rgba(0,0,255,0.5); }
         }
         .block-card {
             background: rgba(10, 20, 35, 0.65);
@@ -385,14 +378,7 @@
             <div class="snake-glow shadow-2xl">
                 <div id="qrcode"></div>
                 <div class="qr-logo">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="40" r="25" fill="#3b82f6" stroke="#ffffff" stroke-width="4"/>
-                        <circle cx="35" cy="32" r="5" fill="white"/>
-                        <circle cx="65" cy="32" r="5" fill="white"/>
-                        <path d="M35 50 Q50 65, 65 50" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <rect x="25" y="65" width="50" height="25" rx="12" fill="#1e293b" stroke="#ffffff" stroke-width="3"/>
-                        <text x="42" y="84" font-family="Arial" font-size="20" fill="white" font-weight="bold">S</text>
-                    </svg>
+                    <img id="qIcon" src="https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg" alt="logo">
                 </div>
             </div>
 
@@ -424,15 +410,8 @@
                 <span class="bg-blue-600 text-white text-[7px] sm:text-[8px] font-black px-2 sm:px-3 py-1 rounded-md uppercase tracking-widest">OFFICIAL ID</span>
             </div>
 
-            <div id="idAvatar" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-white shadow-2xl flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-600 mb-3 sm:mb-4">
-                <svg viewBox="0 0 100 100" width="80" height="80">
-                    <circle cx="50" cy="40" r="30" fill="#facc15" stroke="white" stroke-width="4"/>
-                    <circle cx="35" cy="30" r="6" fill="white"/>
-                    <circle cx="65" cy="30" r="6" fill="white"/>
-                    <path d="M35 55 Q50 75, 65 55" stroke="white" stroke-width="8" stroke-linecap="round" fill="none"/>
-                    <rect x="30" y="70" width="40" height="20" rx="10" fill="#0f172a" stroke="white" stroke-width="3"/>
-                    <text x="48" y="87" font-family="Arial" font-size="24" fill="white" font-weight="bold">S</text>
-                </svg>
+            <div id="idAvatar" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-white shadow-2xl flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-600 mb-3 sm:mb-4 overflow-hidden">
+                <img id="avatarImg" src="https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg" class="w-full h-full object-cover" alt="avatar">
             </div>
             
             <h2 id="idName" class="text-xl sm:text-2xl font-black text-slate-800">Sadik Husain</h2>
@@ -450,7 +429,7 @@
         </div>
     </div>
 
-    <!-- ========== BOTTOM NAV - 3 BUTTONS: CAMERA, DOWNLOAD, SHARE, SETTINGS ========= -->
+    <!-- ========== BOTTOM NAV - 4 BUTTONS ========= -->
     <div class="bottom-nav">
         <!-- CAMERA -->
         <div class="nav-item" onclick="openScanner()">
@@ -464,8 +443,8 @@
             <span class="nav-label">📷 CAMERA</span>
         </div>
 
-        <!-- DOWNLOAD QR - NEW -->
-        <div class="nav-item" onclick="downloadQR()">
+        <!-- DOWNLOAD QR - PROFESSIONAL WITH LOGO & DETAILS -->
+        <div class="nav-item" onclick="downloadProfessionalQR()">
             <div class="nav-btn">
                 <svg class="w-6 h-6 sm:w-7 sm:h-7 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                     <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" stroke-linecap="round"/>
@@ -474,8 +453,8 @@
             <span class="nav-label">⬇️ DOWNLOAD</span>
         </div>
 
-        <!-- SHARE QR - NEW -->
-        <div class="nav-item" onclick="shareQR()">
+        <!-- SHARE QR - PROFESSIONAL WITH LOGO & DETAILS -->
+        <div class="nav-item" onclick="shareProfessionalQR()">
             <div class="nav-btn">
                 <svg class="w-6 h-6 sm:w-7 sm:h-7 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                     <path d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" stroke-linecap="round"/>
@@ -487,7 +466,7 @@
         <!-- SETTINGS -->
         <div class="nav-item" onclick="openSettings()">
             <div class="nav-btn">
-                <!-- iOS STYLE SETTINGS ICON - CLEAN, MINIMAL, PERFECT PROPORTIONS -->
+                <!-- iOS STYLE SETTINGS ICON -->
                 <svg class="w-6 h-6 sm:w-7 sm:h-7 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3.5L12 5.5M12 3.5C10.8 3.5 9.65 3.85 8.68 4.5L7.5 3.3M8.68 4.5C7.45 5.25 6.5 6.35 5.9 7.65L4.4 7.2M5.9 7.65C5.35 8.8 5.05 10.1 5.05 11.45L3.2 11.6M5.05 11.45C5.05 12.8 5.4 14.1 6 15.25L4.55 16M6 15.25C6.6 16.5 7.5 17.6 8.68 18.35L7.6 19.65M8.68 18.35C9.6 18.95 10.7 19.3 11.85 19.35L12 21.2M11.85 19.35C13 19.3 14.15 18.95 15.12 18.3L16.25 19.55M15.12 18.3C16.3 17.55 17.25 16.45 17.9 15.2L19.4 15.65M17.9 15.2C18.5 14 18.85 12.65 18.9 11.3L20.75 11.15M18.9 11.3C18.85 9.95 18.5 8.65 17.85 7.5L19.3 6.75M17.85 7.5C17.25 6.3 16.35 5.25 15.22 4.5L16.25 3.2M15.22 4.5C14.25 3.9 13.15 3.55 12 3.5L12 5.5" stroke="currentColor" stroke-width="1.8" fill="none"/>
                     <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.8" fill="none"/>
@@ -514,13 +493,16 @@
 
     <div id="setModal" class="modal">
         <div class="bg-white w-full rounded-[32px] sm:rounded-[40px] p-6 sm:p-8 space-y-3 sm:space-y-4">
-            <h3 class="text-lg sm:text-xl font-black text-slate-800 text-center uppercase">Profile Setup</h3>
+            <h3 class="text-lg sm:text-xl font-black text-slate-800 text-center uppercase">PROFILE SETTINGS</h3>
             <input type="text" id="inUpi" placeholder="UPI ID" class="w-full p-3 sm:p-4 bg-slate-50 rounded-2xl outline-none font-semibold border-none text-sm sm:text-base">
             <input type="text" id="inName" placeholder="Full Name" class="w-full p-3 sm:p-4 bg-slate-50 rounded-2xl outline-none font-semibold border-none text-sm sm:text-base">
-            <input type="text" id="inImg" placeholder="Image URL (optional)" class="w-full p-3 sm:p-4 bg-slate-50 rounded-2xl outline-none font-semibold border-none text-sm sm:text-base">
+            <input type="text" id="inImg" placeholder="Logo URL" class="w-full p-3 sm:p-4 bg-slate-50 rounded-2xl outline-none font-semibold border-none text-sm sm:text-base" value="https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg">
             <input type="text" id="inMsg" placeholder="Auto Message" class="w-full p-3 sm:p-4 bg-slate-50 rounded-2xl outline-none font-semibold border-none text-sm sm:text-base">
-            <button onclick="save()" class="w-full bg-slate-900 text-white py-4 sm:py-5 rounded-2xl font-black shadow-xl text-sm sm:text-base">SAVE</button>
-            <button onclick="document.getElementById('setModal').style.display='none'" class="w-full text-slate-400 font-bold text-xs sm:text-sm uppercase">Close</button>
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="saveSettings()" class="w-full bg-slate-900 text-white py-4 sm:py-5 rounded-2xl font-black shadow-xl text-sm sm:text-base">SAVE</button>
+                <button onclick="resetSettings()" class="w-full bg-blue-600 text-white py-4 sm:py-5 rounded-2xl font-black shadow-xl text-sm sm:text-base">RESET</button>
+            </div>
+            <button onclick="document.getElementById('setModal').style.display='none'" class="w-full text-slate-400 font-bold text-xs sm:text-sm uppercase">CLOSE</button>
         </div>
     </div>
 
@@ -580,7 +562,10 @@
         })();
 
         // ========== QR CODE FUNCTIONS ==========
-        let upi = "mdsadiks486@okicici", name = "Sadik Husain", icon = "", autoMsg = "Thanks for Payment";
+        let upi = "mdsadiks486@okicici";
+        let name = "Sadik Husain";
+        let logoUrl = "https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg";
+        let autoMsg = "Thanks for Payment";
         let html5QrCode;
         let qrcode = new QRCode(document.getElementById("qrcode"), { width: 200, height: 200, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
 
@@ -590,49 +575,172 @@
             qrcode.makeCode(`upi://pay?pa=${upi}&pn=${encodeURIComponent(name)}&am=${a}&tn=${encodeURIComponent(autoMsg)}&cu=INR`);
         }
 
-        // ========== DOWNLOAD QR CODE ==========
-        function downloadQR() {
-            const canvas = document.querySelector('#qrcode canvas');
-            if (!canvas) {
-                alert('QR Code not found!');
-                return;
-            }
-            const link = document.createElement('a');
-            link.download = `sadik-qr-${upi.split('@')[0]}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        }
+        // ========== PROFESSIONAL QR GENERATOR WITH LOGO & DETAILS ==========
+        async function generateProfessionalQRCanvas() {
+            const amount = document.getElementById('amtInput').value || 0;
+            const canvas = document.createElement('canvas');
+            canvas.width = 800;
+            canvas.height = 1000;
+            const ctx = canvas.getContext('2d');
 
-        // ========== SHARE QR CODE (WEB SHARE API) ==========
-        function shareQR() {
-            const canvas = document.querySelector('#qrcode canvas');
-            if (!canvas) {
-                alert('QR Code not found!');
-                return;
-            }
+            // White background
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Add border effect
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 12;
+            ctx.strokeRect(6, 6, canvas.width - 12, canvas.height - 12);
+
+            // Title
+            ctx.fillStyle = '#1e293b';
+            ctx.font = 'bold 36px Inter, Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('BHARAT INTERFACE FOR MONEY', canvas.width/2, 80);
+
+            // Generate QR code on temporary canvas
+            const tempCanvas = document.createElement('canvas');
+            const tempQr = new QRCode(tempCanvas, {
+                text: `upi://pay?pa=${upi}&pn=${encodeURIComponent(name)}&am=${amount}&tn=${encodeURIComponent(autoMsg)}&cu=INR`,
+                width: 400,
+                height: 400,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
             
-            canvas.toBlob(function(blob) {
-                const file = new File([blob], 'sadik-qr.png', { type: 'image/png' });
-                if (navigator.share) {
-                    navigator.share({
-                        title: 'Sadik Bharat UPI QR',
-                        text: `Pay ₹${document.getElementById('amtInput').value || 0} to ${name} (${upi})`,
-                        files: [file]
-                    }).catch((error) => {
-                        if (error.name !== 'AbortError') {
-                            fallbackShare();
-                        }
-                    });
-                } else {
-                    fallbackShare();
-                }
-            }, 'image/png');
+            // Draw QR code
+            await new Promise(resolve => setTimeout(resolve, 100)); // Wait for QR to render
+            ctx.drawImage(tempCanvas, 200, 120, 400, 400);
+
+            // Draw logo in center
+            const logoImg = new Image();
+            logoImg.crossOrigin = 'Anonymous';
+            
+            try {
+                await new Promise((resolve, reject) => {
+                    logoImg.onload = resolve;
+                    logoImg.onerror = reject;
+                    logoImg.src = logoUrl;
+                });
+                
+                // Create circular clip for logo
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(400, 320, 60, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.clip();
+                ctx.drawImage(logoImg, 340, 260, 120, 120);
+                ctx.restore();
+                
+                // Border around logo
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 8;
+                ctx.beginPath();
+                ctx.arc(400, 320, 60, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                ctx.strokeStyle = '#3b82f6';
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+                ctx.arc(400, 320, 60, 0, Math.PI * 2);
+                ctx.stroke();
+            } catch (e) {
+                console.log('Logo load failed, continuing without logo');
+            }
+
+            // Professional details section
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(100, 600, 600, 280);
+            
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(100, 600, 600, 280);
+
+            // Payment details
+            ctx.fillStyle = '#0f172a';
+            ctx.font = 'bold 32px Inter, Arial, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('₹' + amount, 140, 680);
+
+            ctx.fillStyle = '#334155';
+            ctx.font = 'bold 28px Inter, Arial, sans-serif';
+            ctx.fillText('UPI ID:', 140, 760);
+            ctx.fillStyle = '#2563eb';
+            ctx.font = '28px Inter, Arial, sans-serif';
+            ctx.fillText(upi, 300, 760);
+
+            ctx.fillStyle = '#334155';
+            ctx.font = 'bold 28px Inter, Arial, sans-serif';
+            ctx.fillText('Name:', 140, 820);
+            ctx.fillStyle = '#0f172a';
+            ctx.font = '28px Inter, Arial, sans-serif';
+            ctx.fillText(name, 300, 820);
+
+            ctx.fillStyle = '#334155';
+            ctx.font = 'bold 24px Inter, Arial, sans-serif';
+            ctx.fillText('Message:', 140, 880);
+            ctx.fillStyle = '#64748b';
+            ctx.font = '24px Inter, Arial, sans-serif';
+            ctx.fillText('"' + autoMsg + '"', 300, 880);
+
+            // Footer
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '20px Inter, Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('SECURE • NPCI CERTIFIED • DIGITAL INDIA', canvas.width/2, 950);
+
+            return canvas;
         }
 
-        function fallbackShare() {
-            const canvas = document.querySelector('#qrcode canvas');
+        // ========== DOWNLOAD PROFESSIONAL QR ==========
+        async function downloadProfessionalQR() {
+            try {
+                const canvas = await generateProfessionalQRCanvas();
+                const link = document.createElement('a');
+                link.download = `sadik-bharat-qr-${upi.split('@')[0]}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            } catch (e) {
+                alert('Error generating QR. Please try again.');
+                console.error(e);
+            }
+        }
+
+        // ========== SHARE PROFESSIONAL QR ==========
+        async function shareProfessionalQR() {
+            try {
+                const canvas = await generateProfessionalQRCanvas();
+                
+                canvas.toBlob(async function(blob) {
+                    const file = new File([blob], 'sadik-bharat-qr.png', { type: 'image/png' });
+                    const amount = document.getElementById('amtInput').value || 0;
+                    
+                    if (navigator.share) {
+                        try {
+                            await navigator.share({
+                                title: 'Sadik Bharat UPI QR',
+                                text: `Pay ₹${amount} to ${name} (${upi})`,
+                                files: [file]
+                            });
+                        } catch (error) {
+                            if (error.name !== 'AbortError') {
+                                fallbackDownload(canvas);
+                            }
+                        }
+                    } else {
+                        fallbackDownload(canvas);
+                    }
+                }, 'image/png');
+            } catch (e) {
+                alert('Error generating QR. Please try again.');
+                console.error(e);
+            }
+        }
+
+        function fallbackDownload(canvas) {
             const link = document.createElement('a');
-            link.download = `sadik-qr-${upi.split('@')[0]}.png`;
+            link.download = `sadik-bharat-qr-${upi.split('@')[0]}.png`;
             link.href = canvas.toDataURL('image/png');
             link.click();
             alert('Share not supported, QR downloaded instead!');
@@ -662,10 +770,12 @@
         function parseUPI(data) {
             if (data.includes("upi://pay")) {
                 const p = new URLSearchParams(data.split('?')[1]);
-                upi = p.get('pa') || upi; name = p.get('pn') || name;
+                upi = p.get('pa') || upi;
+                name = p.get('pn') || name;
                 document.getElementById('idUpi').innerText = upi;
                 document.getElementById('idName').innerText = name;
-                generateQR(); closeScanner();
+                generateQR(); 
+                closeScanner();
             }
         }
 
@@ -674,20 +784,45 @@
             document.getElementById('setModal').style.display = 'flex';
             document.getElementById('inUpi').value = upi; 
             document.getElementById('inName').value = name; 
-            document.getElementById('inImg').value = ''; 
+            document.getElementById('inImg').value = logoUrl; 
             document.getElementById('inMsg').value = autoMsg;
         }
 
-        function save() {
+        function saveSettings() {
             upi = document.getElementById('inUpi').value; 
             name = document.getElementById('inName').value; 
-            icon = document.getElementById('inImg').value; 
+            logoUrl = document.getElementById('inImg').value; 
             autoMsg = document.getElementById('inMsg').value;
+            
+            // Update UI
             document.getElementById('idUpi').innerText = upi; 
             document.getElementById('idName').innerText = name; 
             document.getElementById('msgDisplay').innerText = `"${autoMsg}"`;
+            document.getElementById('qIcon').src = logoUrl;
+            document.getElementById('avatarImg').src = logoUrl;
+            
             generateQR(); 
             document.getElementById('setModal').style.display = 'none';
+        }
+
+        function resetSettings() {
+            upi = "mdsadiks486@okicici";
+            name = "Sadik Husain";
+            logoUrl = "https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg";
+            autoMsg = "Thanks for Payment";
+            
+            document.getElementById('inUpi').value = upi;
+            document.getElementById('inName').value = name;
+            document.getElementById('inImg').value = logoUrl;
+            document.getElementById('inMsg').value = autoMsg;
+            
+            document.getElementById('idUpi').innerText = upi;
+            document.getElementById('idName').innerText = name;
+            document.getElementById('msgDisplay').innerText = `"${autoMsg}"`;
+            document.getElementById('qIcon').src = logoUrl;
+            document.getElementById('avatarImg').src = logoUrl;
+            
+            generateQR();
         }
 
         window.onload = generateQR;
