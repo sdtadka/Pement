@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadik Bharat • SURAKSHA ARMOR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        /* ----- HARDCORE PROTECTION + UNIQUE ANIMATION ----- */
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-drag: none;
+        }
+        body { 
+            background: #f4f7fa; 
+            font-family: 'Inter', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            overflow: hidden; 
+            position: relative;
+        }
+
+        /* ----- INSPECTOR BLOCKER — PREMIUM CYBER ANIMATION + CLICKABLE EMAIL ----- */
+        .inspector-blocker {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, #0a0f1e, #020617);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255,215,0,0.15);
+            box-shadow: inset 0 0 120px rgba(0,0,0,0.8);
+        }
+        .inspector-blocker.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Animated cyber grid — very stylish */
+        .cyber-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px);
+            background-size: 45px 45px;
+            animation: gridShift 14s linear infinite;
+            opacity: 0.25;
+        }
+        @keyframes gridShift {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(45px,45px); }
+        }
+
+        /* Floating orbs */
+        .glow-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at center, rgba(239,68,68,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: orbFloat 20s infinite alternate;
+        }
+        .glow-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at center, rgba(250,204,21,0.12) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            top: auto;
+            right: auto;
+            animation: orbFloat2 25s infinite alternate;
+        }
+        @keyframes orbFloat {
+            0% { transform: translate(0,0) scale(1); }
+            100% { transform: translate(-50px, 30px) scale(1.2); }
+        }
+        @keyframes orbFloat2 {
+            0% { transform: translate(0,0) scale(1); }
+            100% { transform: translate(60px, -40px) scale(1.3); }
+        }
+
+        /* Glitch text effect */
+        .glitch {
+            font-size: 3.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: white;
+            letter-spacing: 6px;
+            position: relative;
+            text-shadow: 0.05em 0 0 rgba(255,0,0,0.7), -0.05em -0.025em 0 rgba(0,255,0,0.5), 0.025em 0.05em 0 rgba(0,0,255,0.5);
+            animation: glitch 725ms infinite;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 0.05em 0 0 rgba(255,0,0,0.7), -0.05em -0.025em 0 rgba(0,255,0,0.5), 0.025em 0.05em 0 rgba(0,0,255,0.5); }
+            14% { text-shadow: 0.05em 0 0 rgba(255,0,0,0.7), -0.05em -0.025em 0 rgba(0,255,0,0.5), 0.025em 0.05em 0 rgba(0,0,255,0.5); }
+            15% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,0.7), 0.025em 0.025em 0 rgba(0,255,0,0.5), -0.05em -0.05em 0 rgba(0,0,255,0.5); }
+            49% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,0.7), 0.025em 0.025em 0 rgba(0,255,0,0.5), -0.05em -0.05em 0 rgba(0,0,255,0.5); }
+            50% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,0.7), 0.05em 0 0 rgba(0,255,0,0.5), 0 -0.05em 0 rgba(0,0,255,0.5); }
+            99% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,0.7), 0.05em 0 0 rgba(0,255,0,0.5), 0 -0.05em 0 rgba(0,0,255,0.5); }
+            100% { text-shadow: 0.05em 0 0 rgba(255,0,0,0.7), -0.05em -0.025em 0 rgba(0,255,0,0.5), 0.025em 0.05em 0 rgba(0,0,255,0.5); }
+        }
+
+        /* premium cyber card */
+        .block-card {
+            background: rgba(10, 20, 35, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(250,204,21,0.3);
+            border-radius: 48px;
+            padding: 40px 30px;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 25px 50px -8px black;
+            position: relative;
+            z-index: 10;
+            animation: cardAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes cardAppear {
+            0% { opacity: 0; transform: scale(0.9) translateY(30px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* 3D email button — direct click to Gmail with autofill */
+        .email-3d {
+            background: linear-gradient(145deg, #facc15, #eab308);
+            border: none;
+            padding: 16px 40px;
+            border-radius: 60px;
+            color: black;
+            font-weight: 900;
+            font-size: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 15px 0 #92400e, 0 20px 40px rgba(250,204,21,0.4);
+            transition: all 0.08s linear;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 25px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .email-3d:active {
+            transform: translateY(12px);
+            box-shadow: 0 5px 0 #92400e, 0 25px 40px rgba(250,204,21,0.4);
+        }
+        .email-3d svg {
+            width: 32px;
+            height: 32px;
+            stroke: black;
+            stroke-width: 1.8;
+        }
+
+        .wallet-case { position: relative; width: 350px; height: 520px; background: #ffffff; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.12); overflow: hidden; border: 6px solid #f8fafc; }
+        .qr-card { position: absolute; inset: 0; background: #ffffff; z-index: 30; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.8s cubic-bezier(0.85, 0, 0.15, 1); cursor: pointer; }
+        .wallet-case.active .qr-card { transform: translateY(105%); }
+        .id-card { position: absolute; inset: 0; background: linear-gradient(145deg, #ffffff, #f1f5f9); z-index: 10; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; transition: all 0.6s ease; opacity: 0; transform: scale(0.95); }
+        .wallet-case.active .id-card { opacity: 1; transform: scale(1); z-index: 40; }
+        .snake-glow { position: relative; padding: 12px; background: white; border-radius: 24px; border: 3px solid #3b82f6; }
+        .qr-logo { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 52px; height: 52px; background: white; border-radius: 50%; padding: 3px; z-index: 10; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .qr-logo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .scan-box { position: relative; width: 100%; height: 280px; background: #000; border-radius: 24px; overflow: hidden; border: 2px solid #3b82f6; }
+        .laser { position: absolute; width: 100%; height: 4px; background: #3b82f6; box-shadow: 0 0 25px #3b82f6; animation: move 2s ease-in-out infinite; z-index: 5; }
+        @keyframes move { 0%, 100% { top: 5%; } 50% { top: 95%; } }
+        #reader video { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+        .modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); z-index: 100; display: none; align-items: center; justify-content: center; padding: 20px; }
+        .bottom-nav { margin-top: 30px; display: flex; gap: 50px; align-items: center; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+        .nav-btn { background: white; padding: 16px; border-radius: 24px; box-shadow: 0 12px 24px rgba(0,0,0,0.04); color: #1e293b; transition: all 0.25s ease; border: 1px solid #ffffff; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; }
+        .nav-btn:active { transform: scale(0.92); }
+        .nav-label { font-size: 11px; font-weight: 700; color: #334155; margin-top: 8px; letter-spacing: 0.5px; text-transform: uppercase; background: #eef2f6; padding: 4px 12px; border-radius: 40px; }
+    </style>
+</head>
+<body>
+
+    <!-- ========== 🛡️ UNIQUE INSPECTOR BLOCKER – EMAIL CLICK + AUTO MESSAGE ========= -->
+    <div id="inspectorBlocker" class="inspector-blocker">
+        <div class="cyber-grid"></div>
+        <div class="glow-orb"></div>
+        <div class="glow-orb-2"></div>
+        
+        <div class="block-card text-center relative">
+            <!-- funny glitchy lock icon -->
+            <div class="flex justify-center mb-6">
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+                    <rect x="25" y="45" width="50" height="40" rx="12" stroke="#facc15" stroke-width="4" fill="#0f172a" />
+                    <circle cx="50" cy="65" r="10" fill="#facc15" />
+                    <path d="M35 45 L35 30 C35 20, 45 12, 65 12 C80 12, 90 22, 90 35 L90 45" stroke="#ef4444" stroke-width="6" stroke-dasharray="8 6" fill="none" />
+                    <circle cx="50" cy="65" r="4" fill="black" />
+                    <path d="M30 85 L70 85" stroke="#facc15" stroke-width="4" stroke-linecap="round" />
+                </svg>
+            </div>
+            
+            <h1 class="glitch">🔒 ACCESS DENIED</h1>
+            
+            <div class="text-white text-2xl font-black mt-2 tracking-widest border-y-2 border-yellow-500/50 py-4 my-6">
+                YOU SHALL NOT INSPECT!
+            </div>
+            
+            <p class="text-slate-300 text-base max-w-md mx-auto font-medium leading-relaxed">
+                ⚡ This code is protected by <span class="text-yellow-400 font-bold">Sadik Cyber Armor</span>. <br/>
+                Developer tools, right-click & view source are <span class="text-red-400">permanently blocked</span>.
+            </p>
+
+            <div class="mt-8 bg-slate-900/60 p-6 rounded-3xl border border-slate-700">
+                <p class="text-white text-sm font-semibold mb-3 uppercase tracking-wider text-yellow-400">
+                    📩 WANT THIS SOURCE CODE ?
+                </p>
+                <p class="text-slate-300 text-sm">
+                    Click the button below — email will open with auto-filled message. Just hit send.
+                </p>
+            </div>
+
+            <!-- ===== CLICKABLE EMAIL BUTTON — AUTO FILL SUBJECT & BODY ===== -->
+            <a id="emailProtectLink" href="#" class="email-3d">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.57 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+                noreply.sahab@gmail.com
+            </a>
+
+            <p class="text-xs text-slate-500 mt-8 border-t border-slate-800 pt-5">
+                🛡️ CYBER PROTECTION ACT • 2026 • BHARAT INTERFACE
+            </p>
+        </div>
+    </div>
+
+    <!-- ========== ORIGINAL UI — WALLET ========== -->
+    <div class="wallet-case" id="wallet" onclick="this.classList.toggle('active')">
+        <div class="qr-card">
+            <div class="mb-6 text-center" onclick="event.stopPropagation()">
+                <p class="text-[10px] font-black text-blue-500 uppercase tracking-[0.2em] mb-1">BHARAT INTERFACE FOR MONEY</p>
+                <div class="flex items-center justify-center">
+                    <span class="text-xl font-bold text-slate-300 mr-1">₹</span>
+                    <input type="number" id="amtInput" value="20" oninput="generateQR()" class="w-20 text-4xl font-black text-center outline-none bg-transparent text-slate-800">
+                </div>
+            </div>
+            <div class="snake-glow shadow-2xl">
+                <div id="qrcode"></div>
+                <div class="qr-logo">
+                    <img id="qIcon" src="https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg">
+                </div>
+            </div>
+            <div class="mt-8 flex flex-col items-center">
+                <div class="flex items-center space-x-4 mb-4 grayscale opacity-80">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="h-5">
+                    <div class="w-px h-4 bg-slate-200"></div>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2f/Bharat_QR_logo.svg/1200px-Bharat_QR_logo.svg.png" class="h-5">
+                </div>
+                <p class="text-[9px] text-slate-400 font-bold uppercase tracking-[0.3em]">SECURE • NPCI CERTIFIED • DIGITAL INDIA</p>
+            </div>
+        </div>
+        <div class="id-card">
+            <div class="w-full flex justify-between items-center mb-6">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="h-4">
+                <span class="bg-blue-600 text-white text-[8px] font-black px-3 py-1 rounded-md uppercase tracking-widest">OFFICIAL ID</span>
+            </div>
+            <img id="idAvatar" src="https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg" class="w-32 h-32 rounded-full border-4 border-white shadow-2xl object-cover mb-4">
+            <h2 id="idName" class="text-2xl font-black text-slate-800">Sadik Husain</h2>
+            <p id="idUpi" class="text-blue-600 font-bold mt-1 text-sm">mdsadiks486@okicici</p>
+            <p id="msgDisplay" class="mt-4 text-xs text-slate-400 italic">"Thanks for Payment"</p>
+            <div class="mt-auto opacity-20">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" class="h-4 rounded-sm">
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="openScanner()">
+            <div class="nav-btn">
+                <svg class="w-7 h-7 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M2.25 6.75C2.25 5.09315 3.59315 3.75 5.25 3.75H6.43116C7.15029 3.75 7.82184 3.39664 8.23108 2.82108L8.94392 1.82108C9.35316 1.24552 10.0247 0.892158 10.7438 0.892158H13.2562C13.9753 0.892158 14.6468 1.24552 15.0561 1.82108L15.7689 2.82108C16.1782 3.39664 16.8497 3.75 17.5688 3.75H18.75C20.4069 3.75 21.75 5.09315 21.75 6.75V16.5C21.75 18.1569 20.4069 19.5 18.75 19.5H5.25C3.59315 19.5 2.25 18.1569 2.25 16.5V6.75Z" stroke-width="1.8"/>
+                    <circle cx="12" cy="11.25" r="3.75" stroke-width="1.8"/>
+                    <line x1="19.5" y1="9" x2="19.5" y2="9.75" stroke-width="1.8"/>
+                </svg>
+            </div>
+            <span class="nav-label">📷 CAMERA</span>
+        </div>
+        <div class="nav-item" onclick="openSettings()">
+            <div class="nav-btn">
+                <svg class="w-7 h-7 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M9.594 3.94C9.966 2.706 11.282 2.334 12 2.334C12.718 2.334 14.034 2.706 14.406 3.94L15.623 7.587C15.753 7.978 16.1 8.25 16.5 8.25H20.412C21.618 8.25 22.272 9.462 21.498 10.188L18.382 12.975C18.058 13.264 17.918 13.708 18.018 14.13L19.182 18.033C19.536 19.228 18.42 20.25 17.328 19.65L13.908 17.712C13.542 17.502 13.092 17.502 12.726 17.712L9.306 19.65C8.214 20.25 7.098 19.228 7.452 18.033L8.616 14.13C8.716 13.708 8.576 13.264 8.252 12.975L5.136 10.188C4.362 9.462 5.016 8.25 6.222 8.25H10.134C10.534 8.25 10.881 7.978 11.011 7.587L12.228 3.94H9.594Z" stroke-width="1.8"/>
+                    <circle cx="12" cy="12.75" r="2.25" stroke-width="1.8"/>
+                </svg>
+            </div>
+            <span class="nav-label">⚙️ SETTINGS</span>
+        </div>
+    </div>
+
+    <!-- SCANNER MODAL -->
+    <div id="scanModal" class="modal">
+        <div class="bg-white w-full max-w-[350px] rounded-[40px] p-8 text-center shadow-2xl">
+            <h3 class="text-xl font-black text-slate-800 mb-6 uppercase tracking-tight">Bharat QR Scanner</h3>
+            <div class="scan-box"><div class="laser"></div><div id="reader"></div></div>
+            <div class="grid grid-cols-2 gap-4 mt-8">
+                <button onclick="closeScanner()" class="bg-slate-100 text-slate-500 font-bold py-4 rounded-2xl uppercase">Cancel</button>
+                <label class="bg-blue-600 text-white font-bold py-4 rounded-2xl cursor-pointer uppercase text-xs flex items-center justify-center">
+                    GALLERY <input type="file" accept="image/*" class="hidden" onchange="uploadQR(event)">
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETTINGS MODAL -->
+    <div id="setModal" class="modal">
+        <div class="bg-white w-full max-w-[320px] rounded-[40px] p-8 space-y-4">
+            <h3 class="text-xl font-black text-slate-800 text-center uppercase">Profile Setup</h3>
+            <input type="text" id="inUpi" placeholder="UPI ID" class="w-full p-4 bg-slate-50 rounded-2xl outline-none font-semibold border-none">
+            <input type="text" id="inName" placeholder="Full Name" class="w-full p-4 bg-slate-50 rounded-2xl outline-none font-semibold border-none">
+            <input type="text" id="inImg" placeholder="Image URL" class="w-full p-4 bg-slate-50 rounded-2xl outline-none font-semibold border-none">
+            <input type="text" id="inMsg" placeholder="Auto Message" class="w-full p-4 bg-slate-50 rounded-2xl outline-none font-semibold border-none">
+            <button onclick="save()" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-black shadow-xl">SAVE</button>
+            <button onclick="document.getElementById('setModal').style.display='none'" class="w-full text-slate-400 font-bold text-sm uppercase">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // ========== 🚀 EMAIL AUTO-FILL — CLICK TO GMAIL with PRE-FILLED MESSAGE =========
+        function setupEmailProtection() {
+            const emailLink = document.getElementById('emailProtectLink');
+            if (emailLink) {
+                const recipient = 'noreply.sahab@gmail.com';
+                const subject = 'Request for Source Code - Sadik Bharat Premium ID';
+                const body = 'Hello Bhai,%0D%0A%0D%0AI tried to inspect the page but got blocked by your awesome security system. I am really interested in your code. Could you please share the source code? I appreciate your work!%0D%0A%0D%0AThanks,%0D%0AA Developer';
+                
+                const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                emailLink.href = mailtoUrl;
+                emailLink.target = '_blank';  // opens Gmail compose
+            }
+        }
+
+        // ========== 🛡️ SUPER INSPECTOR BLOCKER ==========
+        (function() {
+            "use strict";
+            const blocker = document.getElementById('inspectorBlocker');
+
+            function showBlocker() {
+                blocker.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                setupEmailProtection(); // ensure email button is ready
+            }
+
+            // BLOCK EVERY KNOWN SHORTCUT
+            document.addEventListener('contextmenu', (e) => { e.preventDefault(); showBlocker(); return false; });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'F12' || e.code === 'F12' || e.keyCode === 123 ||
+                    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) ||
+                    (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) ||
+                    (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) ||
+                    (e.metaKey && e.altKey && (e.key === 'I' || e.keyCode === 73)) ||
+                    (e.metaKey && e.shiftKey && (e.key === 'C' || e.keyCode === 67))) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showBlocker();
+                    return false;
+                }
+            });
+
+            // DEBUGGER DETECTION
+            let devtoolsOpen = false;
+            const element = new Image();
+            Object.defineProperty(element, 'id', { get: function() { devtoolsOpen = true; showBlocker(); return 'devtools'; } });
+            setInterval(() => { devtoolsOpen = false; console.log(element); if (devtoolsOpen) showBlocker(); }, 800);
+
+            // DEBUGGER PAUSE DETECTION
+            setInterval(() => { const start = new Date().getTime(); debugger; const end = new Date().getTime(); if (end - start > 100) showBlocker(); }, 500);
+
+            document.addEventListener('selectstart', (e) => e.preventDefault());
+            document.addEventListener('copy', (e) => { e.preventDefault(); showBlocker(); });
+            document.addEventListener('cut', (e) => e.preventDefault());
+            document.addEventListener('paste', (e) => e.preventDefault());
+            document.addEventListener('dragstart', (e) => e.preventDefault());
+        })();
+
+        // ========== ORIGINAL APP LOGIC ==========
+        let upi = "mdsadiks486@okicici", name = "Sadik Husain", icon = "https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg", autoMsg = "Thanks for Payment";
+        let html5QrCode;
+        let qrcode = new QRCode(document.getElementById("qrcode"), { width: 210, height: 210, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
+
+        function generateQR() {
+            let a = document.getElementById('amtInput').value || 0;
+            qrcode.clear();
+            qrcode.makeCode(`upi://pay?pa=${upi}&pn=${encodeURIComponent(name)}&am=${a}&tn=${encodeURIComponent(autoMsg)}&cu=INR`);
+        }
+
+        async function openScanner() {
+            document.getElementById('scanModal').style.display = 'flex';
+            html5QrCode = new Html5Qrcode("reader");
+            const config = { fps: 20, qrbox: 240, aspectRatio: 1.0 };
+            try { await html5QrCode.start({ facingMode: "environment" }, config, (data) => parseUPI(data)); } 
+            catch (e) { try { await html5QrCode.start({ facingMode: "user" }, config, (data) => parseUPI(data)); } catch (err) { alert("Camera Error"); closeScanner(); } }
+        }
+
+        async function closeScanner() {
+            if (html5QrCode && html5QrCode.isScanning) { await html5QrCode.stop(); html5QrCode.clear(); }
+            document.getElementById('scanModal').style.display = 'none';
+        }
+
+        function uploadQR(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const s = new Html5Qrcode("reader");
+            s.scanFile(file, true).then(data => { parseUPI(data); s.clear(); }).catch(err => alert("No UPI QR found"));
+        }
+
+        function parseUPI(data) {
+            if (data.includes("upi://pay")) {
+                const p = new URLSearchParams(data.split('?')[1]);
+                upi = p.get('pa') || upi; name = p.get('pn') || name;
+                document.getElementById('idUpi').innerText = upi;
+                document.getElementById('idName').innerText = name;
+                generateQR(); closeScanner();
+            }
+        }
+
+        function openSettings() {
+            document.getElementById('setModal').style.display = 'flex';
+            document.getElementById('inUpi').value = upi; document.getElementById('inName').value = name; document.getElementById('inImg').value = icon; document.getElementById('inMsg').value = autoMsg;
+        }
+
+        function save() {
+            upi = document.getElementById('inUpi').value; name = document.getElementById('inName').value; icon = document.getElementById('inImg').value; autoMsg = document.getElementById('inMsg').value;
+            document.getElementById('idUpi').innerText = upi; document.getElementById('idName').innerText = name; document.getElementById('idAvatar').src = icon; document.getElementById('qIcon').src = icon; document.getElementById('msgDisplay').innerText = `"${autoMsg}"`;
+            generateQR(); document.getElementById('setModal').style.display = 'none';
+        }
+
+        window.onload = generateQR;
+    </script>
+</body>
+</html>
