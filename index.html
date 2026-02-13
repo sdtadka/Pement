@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Sadik Bharat • SURAKSHA ARMOR</title>
+    <title>Sadik UPI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -16,19 +16,16 @@
         .inspector-blocker { position: fixed; inset: 0; background: #020617; z-index: 999999; display: none; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; }
         .inspector-blocker.active { display: flex; }
 
-        /* Wallet Card - Premium Design from first code */
         .wallet-case { position: relative; width: 100%; max-width: 340px; aspect-ratio: 340/510; background: #fff; border-radius: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.1); overflow: hidden; border: 6px solid #f8fafc; cursor: pointer; }
         .qr-card { position: absolute; inset: 0; background: #fff; z-index: 30; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
         .wallet-case.active .qr-card { transform: translateY(110%); }
         .profile-card { position: absolute; inset: 0; background: linear-gradient(145deg, #ffffff, #f1f5f9); z-index: 10; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; transition: 0.6s ease; }
         
-        /* Premium Border for QR */
         .snake-glow { position: relative; padding: 12px; background: white; border-radius: 24px; border: 3px solid #3b82f6; }
         #qrcode { padding: 0; background: white; position: relative; }
         .qr-logo { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: white; border-radius: 50%; padding: 2px; z-index: 10; border: 2px solid #3b82f6; }
         .qr-logo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
-        /* PhonePe Style Scanner */
         .phonepe-scanner { position: fixed; inset: 0; background: #000; z-index: 200; display: none; flex-direction: column; }
         .scanner-header { padding: 20px; display: flex; align-items: center; color: white; gap: 20px; z-index: 10; }
         .scan-window { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 280px; height: 280px; pointer-events: none; }
@@ -48,7 +45,6 @@
         #reader { width: 100% !important; height: 100vh !important; position: absolute !important; top: 0; left: 0; }
         #reader video { object-fit: cover !important; width: 100% !important; height: 100vh !important; }
 
-        /* Bottom Navigation */
         .bottom-nav { margin-top: 25px; display: flex; gap: 15px; justify-content: center; width: 100%; }
         .nav-btn { background: white; width: 65px; height: 65px; border-radius: 20px; box-shadow: 0 8px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.2s; cursor: pointer; }
         .nav-btn:active { transform: scale(0.9); }
@@ -60,11 +56,9 @@
 </head>
 <body>
 
-    <div id="inspectorBlocker" class="inspector-blocker"><h1>🔒 ACCESS DENIED</h1><p>Protected by Sadik Cyber Armor</p></div>
-
-    <!-- MAIN CARD - Premium design from first code -->
+    <div id="inspectorBlocker" class="inspector-blocker"><h1>🔒 ACCESS DENIED</h1><p>Protected by Sadik Cyber Security</p></div>
+ 
     <div class="wallet-case" id="wallet" onclick="this.classList.toggle('active')">
-        <!-- QR CARD (FRONT) -->
         <div class="qr-card">
             <div class="mb-4 text-center" onclick="event.stopPropagation()">
                 <div class="flex items-center justify-center text-slate-800">
@@ -79,48 +73,37 @@
             </div>
             <div class="mt-8 opacity-20"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="h-5"></div>
         </div>
-<div class="profile-card" style="background: linear-gradient(160deg, #ffffff 0%, #f8fafc 100%);">
-    <div class="absolute top-0 left-0 w-full h-2 bg-blue-600"></div>
-
-    <div class="relative mt-6">
-        <img id="avatar" src="https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg" 
-             class="w-32 h-32 rounded-full border-4 border-white shadow-2xl object-cover">
-        <div class="absolute bottom-1 right-1 bg-green-500 text-white rounded-full p-1 shadow-lg">
-            <i class="material-icons" style="font-size: 20px;">verified</i>
+        <div class="profile-card" style="background: linear-gradient(160deg, #ffffff 0%, #f8fafc 100%);">
+            <div class="absolute top-0 left-0 w-full h-2 bg-blue-600"></div>
+            <div class="relative mt-6">
+                <img id="avatar" src="https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg" class="w-32 h-32 rounded-full border-4 border-white shadow-2xl object-cover">
+                <div class="absolute bottom-1 right-1 bg-green-500 text-white rounded-full p-1 shadow-lg">
+                    <i class="material-icons" style="font-size: 20px;">verified</i>
+                </div>
+            </div>
+            <div class="mt-6 text-center">
+                <h2 id="idName" class="text-2xl font-black text-slate-800 uppercase tracking-tight flex items-center justify-center gap-1">Sadik Husain</h2>
+                <div class="flex items-center justify-center gap-2 mt-1">
+                    <span class="h-[1px] w-8 bg-slate-300"></span>
+                    <p id="idUpi" class="text-blue-600 font-extrabold text-sm tracking-wide">sadiks486@ybl</p>
+                    <span class="h-[1px] w-8 bg-slate-300"></span>
+                </div>
+                <div class="mt-8 flex items-center justify-center gap-3 bg-white px-4 py-2 rounded-full shadow-sm border border-slate-100">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="h-4 opacity-90" alt="UPI">
+                    <div class="w-[1px] h-4 bg-slate-300"></div>
+                    <span class="text-[10px] font-black text-slate-500 uppercase tracking-[2px]">UPI ID </span>
+                </div>
+                <div class="mt-auto w-full p-4">
+                    <div class="bg-blue-600 rounded-2xl py-3 px-4 shadow-md shadow-blue-200">
+                        <p id="msgDisplay" class="text-[11px] text-white font-bold uppercase tracking-[3px] text-center italic">"Thanks for Payment"</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="mt-6 text-center">
-        <h2 id="idName" class="text-2xl font-black text-slate-800 uppercase tracking-tight flex items-center justify-center gap-1">
-            Sadik Husain
-        </h2>
-        <div class="flex items-center justify-center gap-2 mt-1">
-            <span class="h-[1px] w-8 bg-slate-300"></span>
-            <p id="idUpi" class="text-blue-600 font-extrabold text-sm tracking-wide">mdsadiks486@okicici</p>
-            <span class="h-[1px] w-8 bg-slate-300"></span>
-    </div>
+    <p class="mt-4 text-[8px] text-slate-400 font-bold uppercase tracking-widest">Sadik Husain</p>
 
-    <div class="mt-8 flex items-center justify-center gap-3 bg-white px-4 py-2 rounded-full shadow-sm border border-slate-100">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="h-4 opacity-90" alt="UPI">
-        <div class="w-[1px] h-4 bg-slate-300"></div>
-        <span class="text-[10px] font-black text-slate-500 uppercase tracking-[2px]">UPI ID </span>
-    </div>
-
-    <div class="mt-auto w-full p-4">
-        <div class="bg-blue-600 rounded-2xl py-3 px-4 shadow-md shadow-blue-200">
-            <p id="msgDisplay" class="text-[11px] text-white font-bold uppercase tracking-[3px] text-center italic">
-                "Thanks for Payment"
-            </p>
-        </div>
-      </div>
-    </div>
-</div>
-
-    <p class="mt-4 text-[8px] text-slate-400 font-bold uppercase tracking-widest">Powered by Suraksha Armor</p></div>
-        </div>
-    </div>
-
-    <!-- BOTTOM NAVIGATION - From second code -->
     <div class="bottom-nav">
         <div class="nav-btn text-blue-500" onclick="openScanner()"><i class="material-icons">qr_code_scanner</i><span>Camera</span></div>
         <div class="nav-btn text-green-500" onclick="downloadQR()"><i class="material-icons">file_download</i><span>Save</span></div>
@@ -128,22 +111,16 @@
         <div class="nav-btn text-slate-600" onclick="openSettings()"><i class="material-icons">settings</i><span>Setting</span></div>
     </div>
 
-    <!-- SCANNER - PhonePe Style from second code -->
     <div id="phonepeScanner" class="phonepe-scanner">
         <div class="scanner-header">
             <i class="material-icons" onclick="closeScanner()" style="cursor:pointer">arrow_back</i>
             <span>Scan any QR</span>
         </div>
-        
         <div id="reader"></div>
-        
         <div class="scan-window">
-            <div class="corner tl"></div>
-            <div class="corner tr"></div>
-            <div class="corner bl"></div>
-            <div class="corner br"></div>
+            <div class="corner tl"></div><div class="corner tr"></div>
+            <div class="corner bl"></div><div class="corner br"></div>
         </div>
-
         <div class="scanner-footer">
             <div class="flex flex-col items-center" onclick="document.getElementById('fileInput').click()">
                 <i class="material-icons">image</i>
@@ -157,7 +134,6 @@
         </div>
     </div>
 
-    <!-- SETTINGS MODAL -->
     <div id="setModal" class="modal">
         <div class="bg-white p-6 rounded-3xl w-full max-w-xs space-y-3">
             <h3 class="font-black text-center">SETTINGS</h3>
@@ -171,11 +147,9 @@
     </div>
 
     <script>
-        // ===== ALL FEATURES FROM SECOND CODE PRESERVED =====
-        let upiId = "mdsadiks486@okicici", upiName = "Sadik Husain", logoUrl = "https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg", autoMsg = "Thanks for Payment", html5Qr = null, isFlashOn = false;
+        let upiId = "sadiks486@ybl", upiName = "Sadik Husain", logoUrl = "https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg", autoMsg = "Thanks for Payment", html5Qr = null, isFlashOn = false;
         let qr = new QRCode(document.getElementById("qrcode"), { width: 200, height: 200, colorDark: "#000", colorLight: "#fff", correctLevel: QRCode.CorrectLevel.H });
 
-        // Protection
         (function() {
             let isDesktop = !/Mobi|Android/i.test(navigator.userAgent);
             if (isDesktop) {
@@ -190,98 +164,59 @@
             qr.makeCode(`upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&am=${amt}&tn=${encodeURIComponent(autoMsg)}&cu=INR`);
         }
 
-        // Camera Logic - Working Flash
         async function openScanner() {
             document.getElementById('phonepeScanner').style.display='flex';
-            
-            if (!html5Qr) {
-                html5Qr = new Html5Qrcode("reader");
-            }
-            
-            const config = { 
-                fps: 30, 
-                qrbox: { width: 280, height: 280 },
-                aspectRatio: 1.0
-            };
-            
-            try {
-                await html5Qr.start(
-                    { facingMode: "environment" }, 
-                    config, 
-                    (text) => handleResult(text),
-                    (error) => console.log(error)
-                );
-            } catch (err) {
-                console.error("Camera error", err);
-                alert("Camera access denied! Please allow permission.");
-                closeScanner();
-            }
+            if (!html5Qr) html5Qr = new Html5Qrcode("reader");
+            const config = { fps: 30, qrbox: { width: 280, height: 280 }, aspectRatio: 1.0 };
+            try { await html5Qr.start({ facingMode: "environment" }, config, (text) => handleResult(text), (error) => console.log(error));
+            } catch (err) { alert("Camera access denied!"); closeScanner(); }
         }
 
         async function toggleFlash() {
-            if (!html5Qr || !html5Qr.isScanning) {
-                alert("Start camera first!");
-                return;
-            }
-            
-            try {
-                isFlashOn = !isFlashOn;
-                await html5Qr.applyVideoConstraints({ 
-                    advanced: [{ torch: isFlashOn }] 
-                });
+            if (!html5Qr || !html5Qr.isScanning) { alert("Start camera first!"); return; }
+            try { isFlashOn = !isFlashOn; await html5Qr.applyVideoConstraints({ advanced: [{ torch: isFlashOn }] });
                 document.getElementById('flashIcon').innerText = isFlashOn ? 'flashlight_on' : 'flashlight_off';
-            } catch (e) {
-                alert("Flash not supported on this device!");
-                isFlashOn = !isFlashOn;
-            }
+            } catch (e) { alert("Flash not supported!"); isFlashOn = !isFlashOn; }
         }
 
-        async function closeScanner() { 
-            if(html5Qr && html5Qr.isScanning) {
-                await html5Qr.stop();
-            }
-            document.getElementById('phonepeScanner').style.display='none';
-        }
+        async function closeScanner() { if(html5Qr && html5Qr.isScanning) await html5Qr.stop(); document.getElementById('phonepeScanner').style.display='none'; }
 
         async function scanImage(input) { 
             if (!input.files || !input.files[0]) return;
-            
             const tempReader = new Html5Qrcode("reader");
-            try {
-                const text = await tempReader.scanFile(input.files[0], true);
-                handleResult(text);
-            } catch(e) {
-                alert("No QR code found in image!");
-            }
-            tempReader.clear();
-            input.value = '';
+            try { const text = await tempReader.scanFile(input.files[0], true); handleResult(text); } catch(e) { alert("No QR code found!"); }
+            tempReader.clear(); input.value = '';
         }
 
         function handleResult(text) {
             if(text && text.includes("upi://pay")) {
-                try {
-                    let urlParts = text.split('?');
-                    if (urlParts.length > 1) {
-                        let p = new URLSearchParams(urlParts[1]);
-                        if (p.get('pa')) upiId = p.get('pa');
-                        if (p.get('pn')) upiName = decodeURIComponent(p.get('pn'));
-                        updateUI();
-                    }
-                } catch(e) {
-                    console.log("QR parse error", e);
+                let urlParts = text.split('?');
+                if (urlParts.length > 1) {
+                    let p = new URLSearchParams(urlParts[1]);
+                    if (p.get('pa')) upiId = p.get('pa');
+                    if (p.get('pn')) upiName = decodeURIComponent(p.get('pn'));
+                    updateUI();
                 }
             }
             closeScanner();
         }
 
-        // Canvas for Save/Share
         async function getCanvas() {
+            // FIX: Get current amount from input
+            let currentAmt = document.getElementById('amtInput').value || 0;
+            
             const canvas = document.createElement('canvas'); canvas.width = 600; canvas.height = 800;
             const ctx = canvas.getContext('2d'); ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,600,800);
             ctx.fillStyle = '#1e293b'; ctx.font = 'bold 24px Inter'; ctx.textAlign = 'center'; ctx.fillText('BHARAT INTERFACE FOR MONEY', 300, 60);
             
             const tempDiv = document.createElement('div');
-            new QRCode(tempDiv, { text: `upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&cu=INR`, width: 350, height: 350 });
+            // FIX: Added amount parameter to the QR code data
+            new QRCode(tempDiv, { 
+                text: `upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&am=${currentAmt}&tn=${encodeURIComponent(autoMsg)}&cu=INR`, 
+                width: 350, 
+                height: 350 
+            });
+            
             await new Promise(r => setTimeout(r, 600));
             ctx.drawImage(tempDiv.querySelector('canvas'), 125, 150, 350, 350);
 
@@ -294,44 +229,35 @@
             return canvas;
         }
 
-        async function downloadQR() { let c = await getCanvas(); let a = document.createElement('a'); a.download='SadikQR.png'; a.href=c.toDataURL(); a.click(); }
+        async function downloadQR() { let c = await getCanvas(); let a = document.createElement('a'); a.download=`Pay_${upiName}.png`; a.href=c.toDataURL(); a.click(); }
         
         async function shareQR() { 
             let c = await getCanvas(); 
             c.toBlob(b => { 
                 let f = new File([b], 'QR.png', {type:'image/png'}); 
-                if(navigator.share) navigator.share({files: [f]}); 
-                else downloadQR(); 
+                if(navigator.share) navigator.share({files: [f]}); else downloadQR(); 
             }); 
         }
 
         function openSettings() { 
-            document.getElementById('inName').value = upiName;
-            document.getElementById('inUpi').value = upiId;
-            document.getElementById('inImg').value = logoUrl;
-            document.getElementById('inMsg').value = autoMsg;
+            document.getElementById('inName').value = upiName; document.getElementById('inUpi').value = upiId;
+            document.getElementById('inImg').value = logoUrl; document.getElementById('inMsg').value = autoMsg;
             document.getElementById('setModal').style.display='flex'; 
         }
         
         function saveSettings() {
-            upiName = document.getElementById('inName').value;
-            upiId = document.getElementById('inUpi').value;
-            logoUrl = document.getElementById('inImg').value;
-            autoMsg = document.getElementById('inMsg').value;
-            updateUI(); 
-            document.getElementById('setModal').style.display='none';
+            upiName = document.getElementById('inName').value; upiId = document.getElementById('inUpi').value;
+            logoUrl = document.getElementById('inImg').value; autoMsg = document.getElementById('inMsg').value;
+            updateUI(); document.getElementById('setModal').style.display='none';
         }
         
         function updateUI() {
-            document.getElementById('idName').innerText = upiName;
-            document.getElementById('idUpi').innerText = upiId;
-            document.getElementById('avatar').src = logoUrl;
-            document.getElementById('qIcon').src = logoUrl;
-            document.getElementById('msgDisplay').innerText = `"${autoMsg}"`;
-            generateQR();
+            document.getElementById('idName').innerText = upiName; document.getElementById('idUpi').innerText = upiId;
+            document.getElementById('avatar').src = logoUrl; document.getElementById('qIcon').src = logoUrl;
+            document.getElementById('msgDisplay').innerText = `"${autoMsg}"`; generateQR();
         }
         
         window.onload = generateQR;
     </script>
 </body>
-    </html>
+</html>
