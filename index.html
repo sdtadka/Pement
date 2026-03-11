@@ -165,13 +165,26 @@
         }
 
         async function openScanner() {
-            document.getElementById('phonepeScanner').style.display='flex';
-            if (!html5Qr) html5Qr = new Html5Qrcode("reader");
-            const config = { fps: 30, qrbox: { width: 280, height: 280 }, aspectRatio: 1.0 };
-            try { await html5Qr.start({ facingMode: "environment" }, config, (text) => handleResult(text), (error) => console.log(error));
-            } catch (err) { alert("Camera access denied!"); closeScanner(); }
-        }
+    document.getElementById('phonepeScanner').style.display='flex';
+    if (!html5Qr) html5Qr = new Html5Qrcode("reader");
+    const config = { fps: 30, qrbox: { width: 280, height: 280 } };
 
+    // अगर आपका कैमरा नहीं सिलेक्ट हो तो नीचे दिया गया है जीरो से लेकर जितना कैमरा है आपके फोन में वैसे चेक करें
+    const devices = await Html5Qrcode.getCameras();
+    
+    // 0 = पहला कैमरा, 1 = दूसरा कैमरा, 2 = तीसरा कैमरा
+    const cameraId = devices[3].id; // ← यहाँ नंबर बदलो
+
+    try {
+        await html5Qr.start(cameraId, config,
+            (text) => handleResult(text),
+            (error) => console.log(error)
+        );
+    } catch (err) {
+        alert("Camera access denied!");
+        closeScanner();
+    }
+}
         async function toggleFlash() {
             if (!html5Qr || !html5Qr.isScanning) { alert("Start camera first!"); return; }
             try { isFlashOn = !isFlashOn; await html5Qr.applyVideoConstraints({ advanced: [{ torch: isFlashOn }] });
