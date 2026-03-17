@@ -54,6 +54,9 @@
         .nav-btn span { font-size: 9px; font-weight: 800; text-transform: uppercase; margin-top: 3px; color: #64748b; }
 
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 100; display: none; align-items: center; justify-content: center; padding: 20px; }
+
+        /* Amount section animation */
+        .amt-hidden { opacity: 0; pointer-events: none; transition: opacity 0.3s ease-out; }
     </style>
 </head>
 <body>
@@ -62,12 +65,13 @@
  
     <div class="wallet-case" id="wallet" onclick="this.classList.toggle('active')">
         <div class="qr-card">
-            <div class="mb-4 text-center" onclick="event.stopPropagation()">
-                <div class="flex items-center justify-center text-slate-800">
+            <div id="amtSection" class="mb-4 text-center" onclick="event.stopPropagation()">
+                <div class="flex items-center justify-center text-slate-800 mb-4">
                     <span class="text-2xl font-black mr-1">₹</span>
-                    <input type="number" id="amtInput" value="20" oninput="generateQR()" class="w-24 text-4xl font-black text-center outline-none bg-transparent">
+                    <input type="number" id="amtInput" value="0" class="w-24 text-4xl font-black text-center outline-none bg-transparent">
                 </div>
-                <p class="text-[9px] font-bold text-blue-600 tracking-[3px] mt-1 uppercase">Bharat Interface for Money</p>
+                <button onclick="generateAndHideAmount()" class="bg-blue-600 text-white px-6 py-2 rounded-xl font-bold text-sm hover:bg-blue-700 transition">Generate QR</button>
+                <p class="text-[9px] font-bold text-blue-600 tracking-[3px] mt-3 uppercase">Bharat Interface for Money</p>
             </div>
             <div class="snake-glow">
                 <div id="qrcode"></div>
@@ -84,10 +88,10 @@
                 </div>
             </div>
             <div class="mt-6 text-center">
-                <h2 id="idName" class="text-2xl font-black text-slate-800 uppercase tracking-tight flex items-center justify-center gap-1">Sadik Husain</h2>
+                <h2 id="idName" class="text-2xl font-black text-slate-800 uppercase tracking-tight flex items-center justify-center gap-1">Saddam Husain</h2>
                 <div class="flex items-center justify-center gap-2 mt-1">
                     <span class="h-[1px] w-8 bg-slate-300"></span>
-                    <p id="idUpi" class="text-blue-600 font-extrabold text-sm tracking-wide">sadiks486@ybl</p>
+                    <p id="idUpi" class="text-blue-600 font-extrabold text-sm tracking-wide">9955880578@ybl</p>
                     <span class="h-[1px] w-8 bg-slate-300"></span>
                 </div>
                 <div class="mt-8 flex items-center justify-center gap-3 bg-white px-4 py-2 rounded-full shadow-sm border border-slate-100">
@@ -104,7 +108,7 @@
         </div>
     </div>
 
-    <p class="mt-4 text-[8px] text-slate-400 font-bold uppercase tracking-widest">Sadik Husain</p>
+    <p class="mt-4 text-[8px] text-slate-400 font-bold uppercase tracking-widest">Saddam Husain</p>
 
     <div class="bottom-nav">
         <div class="nav-btn text-blue-500" onclick="openScanner()"><i class="material-icons">qr_code_scanner</i><span>Camera</span></div>
@@ -149,7 +153,7 @@
     </div>
 
     <script>
-        let upiId = "sadiks486@ybl", upiName = "Sadik Husain", logoUrl = "https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg", autoMsg = "Thanks for Payment", html5Qr = null, isFlashOn = false;
+        let upiId = "9955880578@ybl", upiName = "Saddam Husain", logoUrl = "https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg", autoMsg = "Thanks for Payment GP AUTO ELECTRICAL WORKS", html5Qr = null, isFlashOn = false;
         let qr = new QRCode(document.getElementById("qrcode"), { width: 200, height: 200, colorDark: "#000", colorLight: "#fff", correctLevel: QRCode.CorrectLevel.H });
 
         (function() {
@@ -166,6 +170,12 @@
             qr.makeCode(`upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&am=${amt}&tn=${encodeURIComponent(autoMsg)}&cu=INR`);
         }
 
+        function generateAndHideAmount() {
+            generateQR();
+            // Amount section ko hide karo
+            document.getElementById('amtSection').classList.add('amt-hidden');
+        }
+
         async function openScanner() {
     document.getElementById('phonepeScanner').style.display='flex';
     if (!html5Qr) html5Qr = new Html5Qrcode("reader");
@@ -175,7 +185,7 @@
     const devices = await Html5Qrcode.getCameras();
     
     // 0 = पहला कैमरा, 1 = दूसरा कैमरा, 2 = तीसरा कैमरा
-    const cameraId = devices[3].id; // ← यहाँ नंबर बदलो
+    const cameraId = devices[0].id; // ← यहाँ नंबर बदलो
 
     try {
         await html5Qr.start(cameraId, config,
@@ -272,7 +282,11 @@
             document.getElementById('msgDisplay').innerText = `"${autoMsg}"`; generateQR();
         }
         
-        window.onload = generateQR;
+        window.onload = function() {
+            // Initially amount section dikhta rahega, sirf amount field empty rahega
+            // QR generate hone se pehle nothing
+        }
+        
         /* PWA Service Worker */
 if ("serviceWorker" in navigator) {
 navigator.serviceWorker.register("sw.js")
