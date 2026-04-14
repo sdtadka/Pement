@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>GP AUTOELECTRIC</title>
+    <title>Sadik UPI - Premium</title>
     <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#3b82f6">
+    <meta name="theme-color" content="#3b82f6">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -13,8 +13,14 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         * { -webkit-user-select: none; user-select: none; font-family: 'Inter', sans-serif; box-sizing: border-box; }
-        body { background: #f1f5f9; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 10px; position: relative; }
+        body { background: #f1f5f9; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 10px; position: relative; overflow: hidden; }
         
+        /* Premium Alert Modal */
+        #customAlert { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: none; align-items: flex-end; justify-content: center; backdrop-filter: blur(8px); }
+        .alert-box { background: white; width: 100%; max-width: 400px; border-radius: 40px 40px 0 0; padding: 35px 25px; transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; box-shadow: 0 -15px 30px rgba(0,0,0,0.15); }
+        #customAlert.active { display: flex; }
+        #customAlert.active .alert-box { transform: translateY(0); }
+
         .inspector-blocker { position: fixed; inset: 0; background: #020617; z-index: 999999; display: none; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; }
         .inspector-blocker.active { display: flex; }
 
@@ -23,29 +29,13 @@
         .wallet-case.active .qr-card { transform: translateY(110%); }
         .profile-card { position: absolute; inset: 0; background: linear-gradient(160deg, #ffffff 0%, #f8fafc 100%); z-index: 10; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; transition: 0.6s ease; }
         
-        .snake-glow { position: relative; padding: 12px; background: white; border-radius: 24px; border: 3px solid #3b82f6; }
-        #qrcode { padding: 0; background: white; position: relative; }
+        .snake-glow { position: relative; padding: 12px; background: white; border-radius: 24px; border: 3px solid #3b82f6; margin-top: 15px; }
+        #qrcode { padding: 0; background: white; position: relative; min-height: 200px; display: flex; align-items: center; justify-content: center; }
         .qr-logo { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: white; border-radius: 50%; padding: 2px; z-index: 10; border: 2px solid #3b82f6; }
         .qr-logo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
-        .phonepe-scanner { position: fixed; inset: 0; background: #000; z-index: 200; display: none; flex-direction: column; }
-        .scanner-header { padding: 20px; display: flex; align-items: center; color: white; gap: 20px; z-index: 10; }
-        .scan-window { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 280px; height: 280px; pointer-events: none; }
-        
-        .corner { position: absolute; width: 50px; height: 50px; border: 6px solid #ffffff; border-radius: 12px; animation: cornerPulse 1.5s ease-in-out infinite; }
-        .tl { top: -4px; left: -4px; border-right: 0; border-bottom: 0; }
-        .tr { top: -4px; right: -4px; border-left: 0; border-bottom: 0; }
-        .bl { bottom: -4px; left: -4px; border-right: 0; border-top: 0; }
-        .br { bottom: -4px; right: -4px; border-left: 0; border-top: 0; }
-
-        @keyframes cornerPulse {
-            0%, 100% { transform: scale(1); border-color: #ffffff; }
-            50% { transform: scale(1.1); border-color: #3b82f6; }
-        }
-
-        .scanner-footer { position: absolute; bottom: 40px; left: 0; right: 0; display: flex; justify-content: center; gap: 40px; color: white; }
-        #reader { width: 100% !important; height: 100vh !important; position: absolute !important; top: 0; left: 0; }
-        #reader video { object-fit: cover !important; width: 100% !important; height: 100vh !important; }
+        /* PhonePe Logo Adjustment */
+        .pp-top-logo { position: absolute; top: -35px; left: 50%; transform: translateX(-50%); width: 40px; z-index: 50; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
 
         .bottom-nav { margin-top: 25px; display: flex; gap: 15px; justify-content: center; width: 100%; }
         .nav-btn { background: white; width: 65px; height: 65px; border-radius: 20px; box-shadow: 0 8px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.2s; cursor: pointer; }
@@ -53,53 +43,74 @@
         .nav-btn i { font-size: 26px; }
         .nav-btn span { font-size: 9px; font-weight: 800; text-transform: uppercase; margin-top: 3px; color: #64748b; }
 
+        /* Full Scanner UI Restoration */
+        .phonepe-scanner { position: fixed; inset: 0; background: #000; z-index: 200; display: none; flex-direction: column; }
+        .scanner-header { padding: 20px; display: flex; align-items: center; color: white; gap: 20px; z-index: 10; background: rgba(0,0,0,0.5); }
+        .scan-window { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 280px; height: 280px; pointer-events: none; z-index: 20; }
+        .corner { position: absolute; width: 50px; height: 50px; border: 6px solid #ffffff; border-radius: 12px; animation: cornerPulse 1.5s infinite; }
+        .tl { top: -4px; left: -4px; border-right: 0; border-bottom: 0; }
+        .tr { top: -4px; right: -4px; border-left: 0; border-bottom: 0; }
+        .bl { bottom: -4px; left: -4px; border-right: 0; border-top: 0; }
+        .br { bottom: -4px; right: -4px; border-left: 0; border-top: 0; }
+        @keyframes cornerPulse { 0%, 100% { transform: scale(1); border-color: #fff; } 50% { transform: scale(1.1); border-color: #3b82f6; } }
+        .scanner-footer { position: absolute; bottom: 40px; left: 0; right: 0; display: flex; justify-content: center; gap: 60px; color: white; z-index: 10; }
+        #reader { width: 100% !important; height: 100vh !important; position: absolute !important; top: 0; left: 0; }
+        #reader video { object-fit: cover !important; width: 100% !important; height: 100vh !important; }
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 100; display: none; align-items: center; justify-content: center; padding: 20px; }
-
-        /* Amount section animation */
-        .amt-hidden { opacity: 0; pointer-events: none; transition: opacity 0.3s ease-out; }
     </style>
 </head>
 <body>
 
     <div id="inspectorBlocker" class="inspector-blocker"><h1>🔒 ACCESS DENIED</h1><p>Protected by Sadik Cyber Security</p></div>
- 
+
     <div class="wallet-case" id="wallet" onclick="this.classList.toggle('active')">
         <div class="qr-card">
-            <div class="snake-glow">
-                <div id="qrcode"></div>
-                <div class="qr-logo"><img id="qIcon" src="https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg"></div>
+            <div class="relative">
+                <div class="pp-top-logo">
+                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><circle cx="-25.926" cy="41.954" r="29.873" fill="#5f259f" transform="rotate(-76.714 -48.435 5.641) scale(8.56802)"/><path d="M372.164 189.203c0-10.008-8.576-18.593-18.584-18.593h-34.323l-78.638-90.084c-7.154-8.577-18.592-11.439-30.03-8.577l-27.17 8.577c-4.292 1.43-5.723 7.154-2.862 10.007l85.8 81.508H136.236c-4.293 0-7.154 2.861-7.154 7.154v14.292c0 10.016 8.585 18.592 18.592 18.592h20.015v68.639c0 51.476 27.17 81.499 72.931 81.499 14.292 0 25.739-1.431 40.03-7.146v45.753c0 12.87 10.016 22.886 22.885 22.886h20.015c4.293 0 8.577-4.293 8.577-8.586V210.648h32.893c4.292 0 7.145-2.861 7.145-7.145v-14.3zM280.65 312.17c-8.576 4.292-20.015 5.723-28.591 5.723-22.886 0-34.324-11.438-34.324-37.176v-68.639h62.915v100.092z" fill="#fff"/></svg>
+                </div>
+                
+                <div class="snake-glow">
+                    <div id="qrcode"></div>
+                    <div class="qr-logo" id="qLogoContainer"><img id="qIcon" src="https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg"></div>
+                </div>
             </div>
-            <div class="mt-6 opacity-20"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="h-5"></div>
+
+            <div class="mt-8 opacity-20"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="h-5"></div>
+            
             <div id="amtSection" class="mt-6 text-center w-full" onclick="event.stopPropagation()">
                 <div class="flex items-center justify-center text-slate-800 mb-3">
                     <span class="text-xl font-black mr-1">₹</span>
-                    <input type="number" id="amtInput" value="0" class="w-20 text-2xl font-black text-center outline-none bg-transparent border-b-2 border-slate-300">
+                    <input type="number" id="amtInput" placeholder="0" class="w-20 text-2xl font-black text-center outline-none bg-transparent border-b-2 border-slate-300">
                 </div>
-                <button onclick="generateAndHideAmount()" class="bg-blue-600 text-white px-5 py-2 rounded-lg font-bold text-xs hover:bg-blue-700 transition">Generate QR</button>
+                <button onclick="generateQRFromInput()" class="bg-blue-600 text-white px-6 py-2 rounded-xl font-bold text-xs hover:bg-blue-700 transition">Generate QR</button>
                 <p class="text-[8px] font-bold text-blue-600 tracking-[3px] mt-2 uppercase">Bharat Interface</p>
             </div>
+
+            <div id="actionSection" class="mt-6 w-full text-center hidden" onclick="event.stopPropagation()">
+                <div class="flex items-center justify-between px-4 gap-2">
+                    <button onclick="goBackToInput()" class="flex-1 bg-slate-600 text-white py-2 rounded-lg font-bold text-[10px] flex items-center justify-center gap-1"><i class="material-icons" style="font-size: 14px;">arrow_back</i> BACK</button>
+                    <button onclick="refreshPage()" class="flex-1 bg-green-600 text-white py-2 rounded-lg font-bold text-[10px] flex items-center justify-center gap-1"><i class="material-icons" style="font-size: 14px;">refresh</i> REFRESH</button>
+                    <button onclick="closeQR()" class="flex-1 bg-red-600 text-white py-2 rounded-lg font-bold text-[10px] flex items-center justify-center gap-1"><i class="material-icons" style="font-size: 14px;">close</i> CLOSE</button>
+                </div>
+            </div>
         </div>
-        <div class="profile-card" style="background: linear-gradient(160deg, #ffffff 0%, #f8fafc 100%);">
+
+        <div class="profile-card">
             <div class="absolute top-0 left-0 w-full h-2 bg-blue-600"></div>
             <div class="relative mt-6">
                 <img id="avatar" src="https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg" class="w-32 h-32 rounded-full border-4 border-white shadow-2xl object-cover">
-                <div class="absolute bottom-1 right-1 bg-green-500 text-white rounded-full p-1 shadow-lg">
-                    <i class="material-icons" style="font-size: 20px;">verified</i>
-                </div>
+                <div class="absolute bottom-1 right-1 bg-green-500 text-white rounded-full p-1 shadow-lg"><i class="material-icons" style="font-size: 20px;">verified</i></div>
             </div>
             <div class="mt-6 text-center">
-                <h2 id="idName" class="text-2xl font-black text-slate-800 uppercase tracking-tight flex items-center justify-center gap-1">Saddam Husain</h2>
-                <div class="flex items-center justify-center gap-2 mt-1">
-                    <span class="h-[1px] w-8 bg-slate-300"></span>
-                    <p id="idUpi" class="text-blue-600 font-extrabold text-sm tracking-wide">9955880578@ybl</p>
-                    <span class="h-[1px] w-8 bg-slate-300"></span>
-                </div>
+                <h2 id="idName" class="text-2xl font-black text-slate-800 uppercase tracking-tight">Saddam Husain</h2>
+                <p id="idUpi" class="text-blue-600 font-extrabold text-sm tracking-wide mt-1">9955880578@ybl</p>
                 <div class="mt-8 flex items-center justify-center gap-3 bg-white px-4 py-2 rounded-full shadow-sm border border-slate-100">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="h-4 opacity-90" alt="UPI">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="h-4 opacity-90">
                     <div class="w-[1px] h-4 bg-slate-300"></div>
-                    <span class="text-[10px] font-black text-slate-500 uppercase tracking-[2px]">UPI ID </span>
+                    <span class="text-[10px] font-black text-slate-500 uppercase tracking-[2px]">UPI ID</span>
                 </div>
-                <div class="mt-auto w-full p-4">
+                <div class="mt-auto w-full p-4 pt-10">
                     <div class="bg-blue-600 rounded-2xl py-3 px-4 shadow-md shadow-blue-200">
                         <p id="msgDisplay" class="text-[11px] text-white font-bold uppercase tracking-[3px] text-center italic">"Thanks for Payment"</p>
                     </div>
@@ -108,7 +119,19 @@
         </div>
     </div>
 
-    <p class="mt-4 text-[8px] text-slate-400 font-bold uppercase tracking-widest">Saddam Husain</p>
+    <div id="customAlert">
+        <div class="alert-box">
+            <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="material-icons" style="font-size: 35px;">error_outline</i>
+            </div>
+            <h3 class="text-xl font-black text-slate-800 mb-2 uppercase">Invalid Amount</h3>
+            <p id="alertMsg" class="text-slate-500 text-sm font-medium mb-8 leading-relaxed"></p>
+            <div class="flex gap-3">
+                <button onclick="closeAlert()" class="flex-1 py-4 bg-slate-100 text-slate-600 rounded-2xl font-bold text-xs uppercase tracking-widest">Close</button>
+                <button onclick="focusInput()" class="flex-1 py-4 bg-blue-600 text-white rounded-2xl font-bold text-xs uppercase tracking-widest shadow-lg shadow-blue-200">Try Again</button>
+            </div>
+        </div>
+    </div>
 
     <div class="bottom-nav">
         <div class="nav-btn text-blue-500" onclick="openScanner()"><i class="material-icons">qr_code_scanner</i><span>Camera</span></div>
@@ -118,10 +141,7 @@
     </div>
 
     <div id="phonepeScanner" class="phonepe-scanner">
-        <div class="scanner-header">
-            <i class="material-icons" onclick="closeScanner()" style="cursor:pointer">arrow_back</i>
-            <span>Scan any QR</span>
-        </div>
+        <div class="scanner-header"><i class="material-icons" onclick="closeScanner()">arrow_back</i><span>Scan any QR Code</span></div>
         <div id="reader"></div>
         <div class="scan-window">
             <div class="corner tl"></div><div class="corner tr"></div>
@@ -129,20 +149,19 @@
         </div>
         <div class="scanner-footer">
             <div class="flex flex-col items-center" onclick="document.getElementById('fileInput').click()">
-                <i class="material-icons">image</i>
-                <span class="text-[10px] mt-1 uppercase font-bold">Gallery</span>
+                <i class="material-icons">image</i><span class="text-[10px] mt-1 font-bold">GALLERY</span>
                 <input type="file" id="fileInput" accept="image/*" class="hidden" onchange="scanImage(this)">
             </div>
             <div class="flex flex-col items-center" onclick="toggleFlash()">
-                <i id="flashIcon" class="material-icons">flashlight_off</i>
-                <span class="text-[10px] mt-1 uppercase font-bold">Torch</span>
+                <i id="flashIcon" class="material-icons">flashlight_off</i><span class="text-[10px] mt-1 font-bold">TORCH</span>
             </div>
         </div>
     </div>
+    <div id="temp-reader" style="display:none"></div>
 
     <div id="setModal" class="modal">
         <div class="bg-white p-6 rounded-3xl w-full max-w-xs space-y-3">
-            <h3 class="font-black text-center">SETTINGS</h3>
+            <h3 class="font-black text-center uppercase tracking-widest">Settings</h3>
             <input type="text" id="inName" placeholder="Full Name" class="w-full p-3 bg-slate-50 rounded-xl outline-none font-bold">
             <input type="text" id="inUpi" placeholder="UPI ID" class="w-full p-3 bg-slate-50 rounded-xl outline-none font-bold text-blue-600">
             <input type="text" id="inImg" placeholder="Photo URL" class="w-full p-3 bg-slate-50 rounded-xl outline-none text-xs">
@@ -156,181 +175,152 @@
         let upiId = "9955880578@ybl", upiName = "Saddam Husain", logoUrl = "https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg", autoMsg = "Thanks for Payment GP AUTO ELECTRICAL WORKS", html5Qr = null, isFlashOn = false;
         let qr = new QRCode(document.getElementById("qrcode"), { width: 200, height: 200, colorDark: "#000", colorLight: "#fff", correctLevel: QRCode.CorrectLevel.H });
 
-        (function() {
-            let isDesktop = !/Mobi|Android/i.test(navigator.userAgent);
-            if (isDesktop) {
-                document.addEventListener('contextmenu', e => { e.preventDefault(); document.getElementById('inspectorBlocker').classList.add('active'); });
-                document.onkeydown = e => { if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74))) { document.getElementById('inspectorBlocker').classList.add('active'); return false; } };
-            }
-        })();
+        window.onload = () => generateQR(0);
 
-        function generateQR() {
-            let amt = document.getElementById('amtInput').value || 0;
+        function generateQR(amt) {
             qr.clear();
-            qr.makeCode(`upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&am=${amt}&tn=${encodeURIComponent(autoMsg)}&cu=INR`);
+            let upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&tn=${encodeURIComponent(autoMsg)}&cu=INR`;
+            if(amt > 0) upiLink += `&am=${amt}`;
+            qr.makeCode(upiLink);
         }
 
-        function generateAndHideAmount() {
-            generateQR();
+        // --- Alert System ---
+        function playErrorSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(1200, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.4);
+                gain.gain.setValueAtTime(1, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+                osc.connect(gain); gain.connect(ctx.destination);
+                osc.start(); osc.stop(ctx.currentTime + 0.4);
+                if(navigator.vibrate) navigator.vibrate([200, 100, 200]);
+            } catch(e) {}
         }
 
-        async function openScanner() {
-    document.getElementById('phonepeScanner').style.display='flex';
-    if (!html5Qr) html5Qr = new Html5Qrcode("reader");
-    
-    try {
-        const devices = await Html5Qrcode.getCameras();
-        
-        if (!devices || devices.length === 0) {
-            alert("कोई कैमरा नहीं मिला!");
-            closeScanner();
-            return;
+        function showAlert(msg) {
+            document.getElementById('alertMsg').innerText = msg;
+            document.getElementById('customAlert').classList.add('active');
+            playErrorSound();
         }
-        
-        // Back camera के लिए (default)
-        let selectedCamera = devices[0];
-        
-        // अगर back camera है तो उसे select करो
-        for (let device of devices) {
-            if (device.label.toLowerCase().includes('back')) {
-                selectedCamera = device;
-                break;
+        function closeAlert() { document.getElementById('customAlert').classList.remove('active'); }
+        function focusInput() { closeAlert(); document.getElementById('amtInput').focus(); }
+
+        function generateQRFromInput() {
+            let val = document.getElementById('amtInput').value;
+            let amt = parseFloat(val);
+            if (val === "" || isNaN(amt) || amt < 1) {
+                showAlert("Transaction Error! Minimum amount must be ₹1 to generate QR."); return;
             }
+            if (amt > 100000) {
+                showAlert("Limit Exceeded! Maximum allowed amount is ₹1,00,000 per transaction."); return;
+            }
+            document.getElementById('amtSection').classList.add('hidden');
+            document.getElementById('actionSection').classList.remove('hidden');
+            generateQR(amt);
         }
-        
-        const config = { 
-            fps: 30, 
-            qrbox: { width: 280, height: 280 },
-            aspectRatio: 1.0
-        };
 
-        await html5Qr.start(
-            selectedCamera.id,
-            config,
-            (text) => handleResult(text),
-            (error) => console.log(error)
-        );
-    } catch (err) {
-        console.error("Camera error:", err);
-        alert("कैमरा एक्सेस नहीं हो सका! \n\n" + err.message);
-        closeScanner();
-    }
-}
+        function goBackToInput() {
+            document.getElementById('amtSection').classList.remove('hidden');
+            document.getElementById('actionSection').classList.add('hidden');
+            document.getElementById('amtInput').value = '';
+            generateQR(0); 
+        }
+
+        function refreshPage() { location.reload(); }
+        function closeQR() { goBackToInput(); }
+
+        // --- Full Scanner Logic (Restored) ---
+        async function openScanner() {
+            document.getElementById('phonepeScanner').style.display='flex';
+            if (!html5Qr) html5Qr = new Html5Qrcode("reader");
+            try {
+                const devices = await Html5Qrcode.getCameras();
+                let selectedCam = devices.length > 1 ? devices[devices.length-1].id : devices[0].id;
+                await html5Qr.start(selectedCam, { fps: 30, qrbox: 280 }, (text) => handleResult(text), (e) => {});
+            } catch (err) { alert("Camera Access Denied!"); closeScanner(); }
+        }
+
+        async function closeScanner() { if(html5Qr && html5Qr.isScanning) await html5Qr.stop(); document.getElementById('phonepeScanner').style.display='none'; }
+        
+        async function scanImage(input) {
+            if (!input.files[0]) return;
+            const tempReader = new Html5Qrcode("temp-reader");
+            try {
+                const text = await tempReader.scanFile(input.files[0], true);
+                handleResult(text);
+            } catch(e) { showAlert("No valid QR code found in the image."); }
+            tempReader.clear();
+        }
 
         async function toggleFlash() {
-            if (!html5Qr || !html5Qr.isScanning) { alert("पहले कैमरा शुरू करो!"); return; }
-            try { 
-                isFlashOn = !isFlashOn; 
+            if (!html5Qr || !html5Qr.isScanning) return;
+            try {
+                isFlashOn = !isFlashOn;
                 await html5Qr.applyVideoConstraints({ advanced: [{ torch: isFlashOn }] });
                 document.getElementById('flashIcon').innerText = isFlashOn ? 'flashlight_on' : 'flashlight_off';
-            } catch (e) { 
-                alert("Flash सपोर्ट नहीं है!"); 
-                isFlashOn = !isFlashOn; 
-            }
-        }
-
-        async function closeScanner() { 
-            if(html5Qr && html5Qr.isScanning) {
-                await html5Qr.stop(); 
-            }
-            document.getElementById('phonepeScanner').style.display='none'; 
-        }
-
-        async function scanImage(input) { 
-            if (!input.files || !input.files[0]) return;
-            const tempReader = new Html5Qrcode("temp-reader");
-            try { 
-                const text = await tempReader.scanFile(input.files[0], true); 
-                handleResult(text); 
-            } catch(e) { 
-                alert("QR कोड नहीं मिला!"); 
-            }
-            tempReader.clear(); 
-            input.value = '';
+            } catch(e) { alert("Flashlight not supported on this device."); }
         }
 
         function handleResult(text) {
-            if(text && text.includes("upi://pay")) {
-                let urlParts = text.split('?');
-                if (urlParts.length > 1) {
-                    let p = new URLSearchParams(urlParts[1]);
-                    if (p.get('pa')) upiId = p.get('pa');
-                    if (p.get('pn')) upiName = decodeURIComponent(p.get('pn'));
-                    updateUI();
-                }
+            if(text.includes("upi://pay")) {
+                let p = new URLSearchParams(text.split('?')[1]);
+                if (p.get('pa')) upiId = p.get('pa');
+                if (p.get('pn')) upiName = decodeURIComponent(p.get('pn'));
+                updateUI();
             }
             closeScanner();
         }
 
+        // --- Canvas Engine (Full Quality Restoration) ---
         async function getCanvas() {
             let currentAmt = document.getElementById('amtInput').value || 0;
-            
             const canvas = document.createElement('canvas'); 
-            canvas.width = 600; 
-            canvas.height = 800;
+            canvas.width = 600; canvas.height = 800;
             const ctx = canvas.getContext('2d'); 
-            ctx.fillStyle = '#ffffff'; 
-            ctx.fillRect(0,0,600,800);
-            ctx.fillStyle = '#1e293b'; 
-            ctx.font = 'bold 24px Inter'; 
-            ctx.textAlign = 'center'; 
+            ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,600,800);
+            
+            // Draw Header
+            ctx.fillStyle = '#1e293b'; ctx.font = 'bold 24px Inter'; ctx.textAlign = 'center'; 
             ctx.fillText('BHARAT INTERFACE FOR MONEY', 300, 60);
-            
-            const tempDiv = document.createElement('div');
-            new QRCode(tempDiv, { 
-                text: `upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&am=${currentAmt}&tn=${encodeURIComponent(autoMsg)}&cu=INR`, 
-                width: 350, 
-                height: 350 
-            });
-            
-            await new Promise(r => setTimeout(r, 600));
-            ctx.drawImage(tempDiv.querySelector('canvas'), 125, 150, 350, 350);
 
-            const img = new Image(); 
-            img.crossOrigin = "anonymous";
+            const tempDiv = document.createElement('div');
+            let upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&tn=${encodeURIComponent(autoMsg)}&cu=INR`;
+            if(currentAmt > 0) upiLink += `&am=${currentAmt}`;
+            
+            new QRCode(tempDiv, { text: upiLink, width: 350, height: 350 });
+            await new Promise(r => setTimeout(r, 600));
+            ctx.drawImage(tempDiv.querySelector('canvas'), 125, 180, 350, 350);
+
+            // Draw Logo
+            const img = new Image(); img.crossOrigin = "anonymous";
             img.src = "https://images.weserv.nl/?url=" + encodeURIComponent(logoUrl);
             try { 
-                await new Promise((res) => { 
-                    img.onload = res; 
-                    img.onerror = res; 
-                }); 
-                ctx.save(); 
-                ctx.beginPath(); 
-                ctx.arc(300, 325, 50, 0, Math.PI*2); 
-                ctx.clip(); 
-                ctx.drawImage(img, 250, 275, 100, 100); 
-                ctx.restore(); 
-                ctx.strokeStyle = '#3b82f6'; 
-                ctx.lineWidth = 4; 
-                ctx.stroke(); 
+                await new Promise((res) => { img.onload = res; img.onerror = res; }); 
+                ctx.save(); ctx.beginPath(); ctx.arc(300, 355, 50, 0, Math.PI*2); ctx.clip(); 
+                ctx.drawImage(img, 250, 305, 100, 100); ctx.restore(); 
+                ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 4; ctx.stroke(); 
             } catch(e) {}
-            
-            ctx.fillStyle = '#64748b'; 
-            ctx.font = 'bold 24px Inter'; 
-            ctx.fillText(upiId, 300, 650);
-            ctx.fillStyle = '#0f172a'; 
-            ctx.font = '900 36px Inter'; 
-            ctx.fillText(upiName.toUpperCase(), 300, 710);
+
+            ctx.fillStyle = '#64748b'; ctx.font = 'bold 24px Inter'; ctx.fillText(upiId, 300, 650);
+            ctx.fillStyle = '#0f172a'; ctx.font = '900 36px Inter'; ctx.fillText(upiName.toUpperCase(), 300, 710);
             return canvas;
         }
 
-        async function downloadQR() { 
-            let c = await getCanvas(); 
-            let a = document.createElement('a'); 
-            a.download=`Pay_${upiName}.png`; 
-            a.href=c.toDataURL(); 
-            a.click(); 
-        }
-        
+        async function downloadQR() { let c = await getCanvas(); let a = document.createElement('a'); a.download=`Sadik_UPI_${upiName}.png`; a.href=c.toDataURL(); a.click(); }
         async function shareQR() { 
             let c = await getCanvas(); 
-            c.toBlob(b => { 
-                let f = new File([b], 'QR.png', {type:'image/png'}); 
-                if(navigator.share) navigator.share({files: [f]}); 
+            c.toBlob(async b => { 
+                let f = new File([b], 'Sadik_QR.png', {type:'image/png'}); 
+                if(navigator.share) await navigator.share({files: [f]}).catch(e => downloadQR());
                 else downloadQR(); 
             }); 
         }
 
+        // --- Settings Logic ---
         function openSettings() { 
             document.getElementById('inName').value = upiName; 
             document.getElementById('inUpi').value = upiId;
@@ -347,25 +337,14 @@
             updateUI(); 
             document.getElementById('setModal').style.display='none';
         }
-        
+
         function updateUI() {
             document.getElementById('idName').innerText = upiName; 
             document.getElementById('idUpi').innerText = upiId;
             document.getElementById('avatar').src = logoUrl; 
             document.getElementById('qIcon').src = logoUrl;
             document.getElementById('msgDisplay').innerText = `"${autoMsg}"`; 
-            generateQR();
-        }
-        
-        window.onload = function() {
-            // शुरुआत में zero rupees का QR code दिखेगा
-            generateQR();
-        }
-        
-        /* PWA Service Worker */
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("sw.js")
-            .then(()=>console.log("Service Worker Registered"));
+            generateQR(0);
         }
     </script>
 </body>
