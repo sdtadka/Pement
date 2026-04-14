@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Sadik UPI</title>
+    <title>GP AUTOELECTRIC</title>
     <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#3b82f6">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,9 +19,9 @@
         .inspector-blocker.active { display: flex; }
 
         .wallet-case { position: relative; width: 100%; max-width: 340px; aspect-ratio: 340/510; background: #fff; border-radius: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.1); overflow: hidden; border: 6px solid #f8fafc; cursor: pointer; }
-        .qr-card { position: absolute; inset: 0; background: #fff; z-index: 30; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+        .qr-card { position: absolute; inset: 0; background: #fff; z-index: 30; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1); padding: 20px; }
         .wallet-case.active .qr-card { transform: translateY(110%); }
-        .profile-card { position: absolute; inset: 0; background: linear-gradient(145deg, #ffffff, #f1f5f9); z-index: 10; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; transition: 0.6s ease; }
+        .profile-card { position: absolute; inset: 0; background: linear-gradient(160deg, #ffffff 0%, #f8fafc 100%); z-index: 10; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; transition: 0.6s ease; }
         
         .snake-glow { position: relative; padding: 12px; background: white; border-radius: 24px; border: 3px solid #3b82f6; }
         #qrcode { padding: 0; background: white; position: relative; }
@@ -65,19 +65,19 @@
  
     <div class="wallet-case" id="wallet" onclick="this.classList.toggle('active')">
         <div class="qr-card">
-            <div id="amtSection" class="mb-4 text-center" onclick="event.stopPropagation()">
-                <div class="flex items-center justify-center text-slate-800 mb-4">
-                    <span class="text-2xl font-black mr-1">₹</span>
-                    <input type="number" id="amtInput" value="0" class="w-24 text-4xl font-black text-center outline-none bg-transparent">
-                </div>
-                <button onclick="generateAndHideAmount()" class="bg-blue-600 text-white px-6 py-2 rounded-xl font-bold text-sm hover:bg-blue-700 transition">Generate QR</button>
-                <p class="text-[9px] font-bold text-blue-600 tracking-[3px] mt-3 uppercase">Bharat Interface for Money</p>
-            </div>
             <div class="snake-glow">
                 <div id="qrcode"></div>
                 <div class="qr-logo"><img id="qIcon" src="https://i.pinimg.com/280x280_RS/fd/d4/bb/fdd4bb649a0dce691af32001abe18c41.jpg"></div>
             </div>
-            <div class="mt-8 opacity-20"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="h-5"></div>
+            <div class="mt-6 opacity-20"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="h-5"></div>
+            <div id="amtSection" class="mt-6 text-center w-full" onclick="event.stopPropagation()">
+                <div class="flex items-center justify-center text-slate-800 mb-3">
+                    <span class="text-xl font-black mr-1">₹</span>
+                    <input type="number" id="amtInput" value="0" class="w-20 text-2xl font-black text-center outline-none bg-transparent border-b-2 border-slate-300">
+                </div>
+                <button onclick="generateAndHideAmount()" class="bg-blue-600 text-white px-5 py-2 rounded-lg font-bold text-xs hover:bg-blue-700 transition">Generate QR</button>
+                <p class="text-[8px] font-bold text-blue-600 tracking-[3px] mt-2 uppercase">Bharat Interface</p>
+            </div>
         </div>
         <div class="profile-card" style="background: linear-gradient(160deg, #ffffff 0%, #f8fafc 100%);">
             <div class="absolute top-0 left-0 w-full h-2 bg-blue-600"></div>
@@ -172,45 +172,81 @@
 
         function generateAndHideAmount() {
             generateQR();
-            // Amount section ko hide karo
-            document.getElementById('amtSection').classList.add('amt-hidden');
         }
 
         async function openScanner() {
     document.getElementById('phonepeScanner').style.display='flex';
     if (!html5Qr) html5Qr = new Html5Qrcode("reader");
-    const config = { fps: 30, qrbox: { width: 280, height: 280 } };
-
-    // अगर आपका कैमरा नहीं सिलेक्ट हो तो नीचे दिया गया है जीरो से लेकर जितना कैमरा है आपके फोन में वैसे चेक करें
-    const devices = await Html5Qrcode.getCameras();
     
-    // 0 = पहला कैमरा, 1 = दूसरा कैमरा, 2 = तीसरा कैमरा
-    const cameraId = devices[0].id; // ← यहाँ नंबर बदलो
-
     try {
-        await html5Qr.start(cameraId, config,
+        const devices = await Html5Qrcode.getCameras();
+        
+        if (!devices || devices.length === 0) {
+            alert("कोई कैमरा नहीं मिला!");
+            closeScanner();
+            return;
+        }
+        
+        // Back camera के लिए (default)
+        let selectedCamera = devices[0];
+        
+        // अगर back camera है तो उसे select करो
+        for (let device of devices) {
+            if (device.label.toLowerCase().includes('back')) {
+                selectedCamera = device;
+                break;
+            }
+        }
+        
+        const config = { 
+            fps: 30, 
+            qrbox: { width: 280, height: 280 },
+            aspectRatio: 1.0
+        };
+
+        await html5Qr.start(
+            selectedCamera.id,
+            config,
             (text) => handleResult(text),
             (error) => console.log(error)
         );
     } catch (err) {
-        alert("Camera access denied!");
+        console.error("Camera error:", err);
+        alert("कैमरा एक्सेस नहीं हो सका! \n\n" + err.message);
         closeScanner();
     }
 }
+
         async function toggleFlash() {
-            if (!html5Qr || !html5Qr.isScanning) { alert("Start camera first!"); return; }
-            try { isFlashOn = !isFlashOn; await html5Qr.applyVideoConstraints({ advanced: [{ torch: isFlashOn }] });
+            if (!html5Qr || !html5Qr.isScanning) { alert("पहले कैमरा शुरू करो!"); return; }
+            try { 
+                isFlashOn = !isFlashOn; 
+                await html5Qr.applyVideoConstraints({ advanced: [{ torch: isFlashOn }] });
                 document.getElementById('flashIcon').innerText = isFlashOn ? 'flashlight_on' : 'flashlight_off';
-            } catch (e) { alert("Flash not supported!"); isFlashOn = !isFlashOn; }
+            } catch (e) { 
+                alert("Flash सपोर्ट नहीं है!"); 
+                isFlashOn = !isFlashOn; 
+            }
         }
 
-        async function closeScanner() { if(html5Qr && html5Qr.isScanning) await html5Qr.stop(); document.getElementById('phonepeScanner').style.display='none'; }
+        async function closeScanner() { 
+            if(html5Qr && html5Qr.isScanning) {
+                await html5Qr.stop(); 
+            }
+            document.getElementById('phonepeScanner').style.display='none'; 
+        }
 
         async function scanImage(input) { 
             if (!input.files || !input.files[0]) return;
-            const tempReader = new Html5Qrcode("reader");
-            try { const text = await tempReader.scanFile(input.files[0], true); handleResult(text); } catch(e) { alert("No QR code found!"); }
-            tempReader.clear(); input.value = '';
+            const tempReader = new Html5Qrcode("temp-reader");
+            try { 
+                const text = await tempReader.scanFile(input.files[0], true); 
+                handleResult(text); 
+            } catch(e) { 
+                alert("QR कोड नहीं मिला!"); 
+            }
+            tempReader.clear(); 
+            input.value = '';
         }
 
         function handleResult(text) {
@@ -227,15 +263,20 @@
         }
 
         async function getCanvas() {
-            // FIX: Get current amount from input
             let currentAmt = document.getElementById('amtInput').value || 0;
             
-            const canvas = document.createElement('canvas'); canvas.width = 600; canvas.height = 800;
-            const ctx = canvas.getContext('2d'); ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,600,800);
-            ctx.fillStyle = '#1e293b'; ctx.font = 'bold 24px Inter'; ctx.textAlign = 'center'; ctx.fillText('BHARAT INTERFACE FOR MONEY', 300, 60);
+            const canvas = document.createElement('canvas'); 
+            canvas.width = 600; 
+            canvas.height = 800;
+            const ctx = canvas.getContext('2d'); 
+            ctx.fillStyle = '#ffffff'; 
+            ctx.fillRect(0,0,600,800);
+            ctx.fillStyle = '#1e293b'; 
+            ctx.font = 'bold 24px Inter'; 
+            ctx.textAlign = 'center'; 
+            ctx.fillText('BHARAT INTERFACE FOR MONEY', 300, 60);
             
             const tempDiv = document.createElement('div');
-            // FIX: Added amount parameter to the QR code data
             new QRCode(tempDiv, { 
                 text: `upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&am=${currentAmt}&tn=${encodeURIComponent(autoMsg)}&cu=INR`, 
                 width: 350, 
@@ -245,53 +286,87 @@
             await new Promise(r => setTimeout(r, 600));
             ctx.drawImage(tempDiv.querySelector('canvas'), 125, 150, 350, 350);
 
-            const img = new Image(); img.crossOrigin = "anonymous";
+            const img = new Image(); 
+            img.crossOrigin = "anonymous";
             img.src = "https://images.weserv.nl/?url=" + encodeURIComponent(logoUrl);
-            try { await new Promise((res) => { img.onload = res; img.onerror = res; }); ctx.save(); ctx.beginPath(); ctx.arc(300, 325, 50, 0, Math.PI*2); ctx.clip(); ctx.drawImage(img, 250, 275, 100, 100); ctx.restore(); ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 4; ctx.stroke(); } catch(e) {}
+            try { 
+                await new Promise((res) => { 
+                    img.onload = res; 
+                    img.onerror = res; 
+                }); 
+                ctx.save(); 
+                ctx.beginPath(); 
+                ctx.arc(300, 325, 50, 0, Math.PI*2); 
+                ctx.clip(); 
+                ctx.drawImage(img, 250, 275, 100, 100); 
+                ctx.restore(); 
+                ctx.strokeStyle = '#3b82f6'; 
+                ctx.lineWidth = 4; 
+                ctx.stroke(); 
+            } catch(e) {}
             
-            ctx.fillStyle = '#64748b'; ctx.font = 'bold 24px Inter'; ctx.fillText(upiId, 300, 650);
-            ctx.fillStyle = '#0f172a'; ctx.font = '900 36px Inter'; ctx.fillText(upiName.toUpperCase(), 300, 710);
+            ctx.fillStyle = '#64748b'; 
+            ctx.font = 'bold 24px Inter'; 
+            ctx.fillText(upiId, 300, 650);
+            ctx.fillStyle = '#0f172a'; 
+            ctx.font = '900 36px Inter'; 
+            ctx.fillText(upiName.toUpperCase(), 300, 710);
             return canvas;
         }
 
-        async function downloadQR() { let c = await getCanvas(); let a = document.createElement('a'); a.download=`Pay_${upiName}.png`; a.href=c.toDataURL(); a.click(); }
+        async function downloadQR() { 
+            let c = await getCanvas(); 
+            let a = document.createElement('a'); 
+            a.download=`Pay_${upiName}.png`; 
+            a.href=c.toDataURL(); 
+            a.click(); 
+        }
         
         async function shareQR() { 
             let c = await getCanvas(); 
             c.toBlob(b => { 
                 let f = new File([b], 'QR.png', {type:'image/png'}); 
-                if(navigator.share) navigator.share({files: [f]}); else downloadQR(); 
+                if(navigator.share) navigator.share({files: [f]}); 
+                else downloadQR(); 
             }); 
         }
 
         function openSettings() { 
-            document.getElementById('inName').value = upiName; document.getElementById('inUpi').value = upiId;
-            document.getElementById('inImg').value = logoUrl; document.getElementById('inMsg').value = autoMsg;
+            document.getElementById('inName').value = upiName; 
+            document.getElementById('inUpi').value = upiId;
+            document.getElementById('inImg').value = logoUrl; 
+            document.getElementById('inMsg').value = autoMsg;
             document.getElementById('setModal').style.display='flex'; 
         }
         
         function saveSettings() {
-            upiName = document.getElementById('inName').value; upiId = document.getElementById('inUpi').value;
-            logoUrl = document.getElementById('inImg').value; autoMsg = document.getElementById('inMsg').value;
-            updateUI(); document.getElementById('setModal').style.display='none';
+            upiName = document.getElementById('inName').value; 
+            upiId = document.getElementById('inUpi').value;
+            logoUrl = document.getElementById('inImg').value; 
+            autoMsg = document.getElementById('inMsg').value;
+            updateUI(); 
+            document.getElementById('setModal').style.display='none';
         }
         
         function updateUI() {
-            document.getElementById('idName').innerText = upiName; document.getElementById('idUpi').innerText = upiId;
-            document.getElementById('avatar').src = logoUrl; document.getElementById('qIcon').src = logoUrl;
-            document.getElementById('msgDisplay').innerText = `"${autoMsg}"`; generateQR();
+            document.getElementById('idName').innerText = upiName; 
+            document.getElementById('idUpi').innerText = upiId;
+            document.getElementById('avatar').src = logoUrl; 
+            document.getElementById('qIcon').src = logoUrl;
+            document.getElementById('msgDisplay').innerText = `"${autoMsg}"`; 
+            generateQR();
         }
         
         window.onload = function() {
-            // Initially amount section dikhta rahega, sirf amount field empty rahega
-            // QR generate hone se pehle nothing
+            // शुरुआत में zero rupees का QR code दिखेगा
+            generateQR();
         }
         
         /* PWA Service Worker */
-if ("serviceWorker" in navigator) {
-navigator.serviceWorker.register("sw.js")
-.then(()=>console.log("Service Worker Registered"));
-}
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js")
+            .then(()=>console.log("Service Worker Registered"));
+        }
     </script>
 </body>
 </html>
